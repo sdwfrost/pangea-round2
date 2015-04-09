@@ -1,0 +1,78 @@
+
+You are using a proportion of Invariable sites estimate, although I don't
+like it. The likelihood epsilon "-f e" will be automatically lowered to 0.001
+to avoid unfavorable effects caused by simultaneous optimization of alpha and P-Invar
+
+
+IMPORTANT WARNING: Sequences HOUSE4222-14818-FEMALE_SAMPLED_44.4444874416696 and HOUSE404-388-MALE_SAMPLED_44.9256747375452 are exactly identical
+
+IMPORTANT WARNING
+Found 1 sequence that is exactly identical to other sequences in the alignment.
+Normally they should be excluded from the analysis.
+
+Just in case you might need it, an alignment file with 
+sequence duplicates removed is printed to file ../sequences/Vill_04_Feb2015_5yr_pol.fas.reduced
+
+
+This is RAxML version 7.6.3 released by Alexandros Stamatakis on June 25 2013.
+
+With greatly appreciated code contributions by:
+Andre Aberer (HITS)
+Simon Berger (HITS)
+Nick Pattengale (Sandia)
+Wayne Pfeiffer (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+
+Alignment has 2043 distinct alignment patterns
+
+Found 0 invariant alignment patterns that correspond to 0 columns 
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+RAxML rapid hill-climbing mode
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+Executing 1 inferences on the original alignment using 1 distinct randomized MP trees
+
+All free model parameters will be estimated by RAxML
+GAMMA+P-Invar model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA+P-Invar Model parameters will be estimated up to an accuracy of 0.0010000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 2043
+Name: No Name Provided
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+raxmlHPC-PTHREADS-SSE3 -s ../sequences/Vill_04_Feb2015_5yr_pol.fas -m GTRGAMMAI -n Vill_04_Feb2015_5yr_pol -T 8 -p 1 
+
+
+Partition: 0 with name: No Name Provided
+Base frequencies: 0.392 0.168 0.227 0.214 
+
+Inference[0]: Time 1321425.569316 GAMMA+P-Invar-based likelihood -320906.962878, best rearrangement setting 5
+alpha[0]: 0.635688 invar[0]: 0.317895 rates[0] ac ag at cg ct gt: 1.009474 8.281455 0.975361 0.917899 9.056954 1.000000 
+
+
+Conducting final model optimizations on all 1 trees under GAMMA-based models ....
+
+Inference[0] final GAMMA-based Likelihood: -320896.221886 tree written to file /home/simon/Projects/pangea_final/raxml/RAxML_result.Vill_04_Feb2015_5yr_pol
+
+
+Starting final GAMMA-based thorough Optimization on tree 0 likelihood -320896.221886 .... 
+
+Final GAMMA-based Score of best tree -320896.221886
+
+Program execution info written to /home/simon/Projects/pangea_final/raxml/RAxML_info.Vill_04_Feb2015_5yr_pol
+Best-scoring ML tree written to: /home/simon/Projects/pangea_final/raxml/RAxML_bestTree.Vill_04_Feb2015_5yr_pol
+
+Overall execution time: 1814120.213453 secs or 503.922282 hours or 20.996762 days
+
