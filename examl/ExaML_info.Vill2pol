@@ -1,0 +1,52 @@
+
+
+This is ExaML version 3.0.10 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in January 16 2014.
+
+
+Alignment has 1985 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 1985
+Name: No Name Provided
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/usr/local/bin/examl -D -t RAxML_parsimonyTree.Vill2pol_startingtree -m PSR -s Vill2pol.binary -n Vill2pol 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 5
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.018735
+ML search convergence criterion fast cycle 1->2 Relative Robinson-Foulds 0.012881
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.019906
+
+Likelihood of best tree: -236453.177148
+
+
+Overall Time for 1 Inference 6592.576439
+
+Overall accumulated Time (in case of restarts): 6592.576439
+
+Likelihood   : -236453.177148
+
+
+Model parameters written to:           /Users/sdf22/Projects/pangea-round2/examl/ExaML_modelFile.Vill2pol
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/examl/ExaML_result.Vill2pol
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/examl/ExaML_log.Vill2pol
+Execution information file written to: /Users/sdf22/Projects/pangea-round2/examl/ExaML_info.Vill2pol

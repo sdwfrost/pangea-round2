@@ -1,0 +1,71 @@
+
+
+This is ExaML version 3.0.10 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in January 16 2014.
+
+
+Alignment has 4811 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 1019
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2010
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1782
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/usr/local/bin/examl -D -t RAxML_parsimonyTree.Vill1_startingtree -m PSR -s Vill1.binary -n Vill1 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 5
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.020964
+ML fast search converged at fast SPR cycle 2 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.008386%
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.037736
+ML search converged at thorough SPR cycle 2 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.003145%
+
+Likelihood of best tree: -825478.699891
+
+
+Overall Time for 1 Inference 381.344402
+
+Overall accumulated Time (in case of restarts): 381.344402
+
+Likelihood   : -825478.699891
+
+
+Model parameters written to:           /Users/sdf22/Projects/pangea-round2/examl/ExaML_modelFile.Vill1
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/examl/ExaML_result.Vill1
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/examl/ExaML_log.Vill1
+Execution information file written to: /Users/sdf22/Projects/pangea-round2/examl/ExaML_info.Vill1
