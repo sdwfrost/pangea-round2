@@ -1,0 +1,49 @@
+
+
+Model Parameters of Partition 0, Name: gag, Type of Data: DNA
+Tree-Length: 84.888383
+rate A <-> C: 1.581736
+rate A <-> G: 4.371639
+rate A <-> T: 0.789628
+rate C <-> G: 0.699965
+rate C <-> T: 5.445352
+rate G <-> T: 1.000000
+
+freq pi(A): 0.374082
+freq pi(C): 0.190536
+freq pi(G): 0.246843
+freq pi(T): 0.188539
+
+
+
+Model Parameters of Partition 1, Name: pol, Type of Data: DNA
+Tree-Length: 84.888383
+rate A <-> C: 0.807134
+rate A <-> G: 3.295231
+rate A <-> T: 0.457280
+rate C <-> G: 0.479832
+rate C <-> T: 5.431076
+rate G <-> T: 1.000000
+
+freq pi(A): 0.398166
+freq pi(C): 0.159967
+freq pi(G): 0.227318
+freq pi(T): 0.214549
+
+
+
+Model Parameters of Partition 2, Name: env, Type of Data: DNA
+Tree-Length: 84.888383
+rate A <-> C: 2.853700
+rate A <-> G: 6.030070
+rate A <-> T: 1.366623
+rate C <-> G: 1.119399
+rate C <-> T: 6.485866
+rate G <-> T: 1.000000
+
+freq pi(A): 0.352709
+freq pi(C): 0.170680
+freq pi(G): 0.234279
+freq pi(T): 0.242332
+
+

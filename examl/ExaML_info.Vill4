@@ -1,0 +1,72 @@
+
+
+This is ExaML version 3.0.10 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in January 16 2014.
+
+
+Alignment has 4796 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 1016
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2043
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1737
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/usr/local/bin/examl -D -t RAxML_parsimonyTree.Vill4_startingtree -m PSR -s Vill4.binary -n Vill4 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 5
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.025072
+ML search convergence criterion fast cycle 1->2 Relative Robinson-Foulds 0.010608
+ML fast search converged at fast SPR cycle 3 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.002893%
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.047252
+ML search converged at thorough SPR cycle 2 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.002893%
+
+Likelihood of best tree: -903005.823223
+
+
+Overall Time for 1 Inference 410.375481
+
+Overall accumulated Time (in case of restarts): 410.375481
+
+Likelihood   : -903005.823223
+
+
+Model parameters written to:           /Users/sdf22/Projects/pangea-round2/examl/ExaML_modelFile.Vill4
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/examl/ExaML_result.Vill4
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/examl/ExaML_log.Vill4
+Execution information file written to: /Users/sdf22/Projects/pangea-round2/examl/ExaML_info.Vill4
