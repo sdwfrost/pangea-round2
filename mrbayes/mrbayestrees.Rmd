@@ -93,7 +93,7 @@ partition.vec[grep("Vill",seqdata.fn)] <- villages.partition
 ```
 
 ```{r}
-relaxedclock <- "
+relaxedclock.fixed <- "
   set autoclose=yes;
   lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
   prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
@@ -101,6 +101,18 @@ relaxedclock <- "
   prset applyto=(all) ratepr=variable;
   prset brlenspr=clock:uniform;
   prset topologypr=fixed(tree_1);
+  prset clockratepr=lognorm(-9.0,1.0);
+  prset clockvar=igr;
+  prset nodeagepr=calibrated;
+"
+relaxedclock <- "
+  set autoclose=yes;
+  lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
+  prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
+  unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
+  prset applyto=(all) ratepr=variable;
+  prset brlenspr=clock:uniform;
+  prset topologypr=uniform;
   prset clockratepr=lognorm(-9.0,1.0);
   prset clockvar=igr;
   prset nodeagepr=calibrated;
@@ -152,7 +164,7 @@ propset nslider(V)$prob=5;
 
 ```{r}
 mcmcpars <- "
-mcmc ngen=22000000 nruns=2 nchains=1 samplefreq=10000;
+mcmc ngen=22000000 nruns=4 nchains=4 samplefreq=10000;
 "
 mcmc.vec <- rep(mcmcpars,numsc)
 ```

@@ -1,5 +1,5 @@
 #NEXUS
-[Data written by write.nexus.data.R, Fri Apr 10 14:18:33 2015]
+[Data written by write.nexus.data.R, Fri Apr 17 12:52:16 2015]
 BEGIN DATA;
   DIMENSIONS NTAX=777 NCHAR=3000;
   FORMAT DATATYPE=DNA MISSING=? GAP=- INTERLEAVE=NO;
@@ -802,7 +802,7 @@ prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
 unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
 prset applyto=(all) ratepr=variable;
 prset brlenspr=clock:uniform;
-prset topologypr=fixed(tree_1);
+prset topologypr=uniform;
 prset clockratepr=lognorm(-9.0,1.0);
 prset clockvar=igr;
 prset nodeagepr=calibrated;
@@ -1583,6 +1583,6 @@ calibrate HOUSE3298_6399=fixed(0.541527105271399);
 calibrate HOUSE1446_11197=fixed(3.2672693414748);
 calibrate HOUSE3567_8095=fixed(0.687171705491401);
 calibrate HOUSE1446_8530=fixed(1.7038533201703);
-mcmc ngen=22000000 nruns=2 nchains=1 samplefreq=10000;
+mcmc ngen=22000000 nruns=4 nchains=4 samplefreq=10000;
 end;
 
