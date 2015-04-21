@@ -48,3 +48,32 @@ ExaML was called as follows:
 Memory Saving Option: DISABLED
 
 Best rearrangement radius: 25
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.134001
+ML search convergence criterion fast cycle 1->2 Relative Robinson-Foulds 0.086412
+ML search convergence criterion fast cycle 2->3 Relative Robinson-Foulds 0.066374
+ML search convergence criterion fast cycle 3->4 Relative Robinson-Foulds 0.045085
+ML search convergence criterion fast cycle 4->5 Relative Robinson-Foulds 0.052599
+ML search convergence criterion fast cycle 5->6 Relative Robinson-Foulds 0.040075
+ML search convergence criterion fast cycle 6->7 Relative Robinson-Foulds 0.013776
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.106450
+ML search convergence criterion thorough cycle 1->2 Relative Robinson-Foulds 0.036944
+ML search convergence criterion thorough cycle 2->3 Relative Robinson-Foulds 0.018785
+ML search convergence criterion thorough cycle 3->4 Relative Robinson-Foulds 0.040701
+ML search convergence criterion thorough cycle 4->5 Relative Robinson-Foulds 0.013776
+ML search converged at thorough SPR cycle 6 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.009393%
+
+Likelihood of best tree: -2664606.929196
+
+
+Overall Time for 1 Inference 15207.559510
+
+Overall accumulated Time (in case of restarts): 15207.559510
+
+Likelihood   : -2664606.929196
+
+
+Model parameters written to:           /Users/sdf22/Projects/pangea-round2/examl/ExaML_modelFile.scC
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/examl/ExaML_result.scC
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/examl/ExaML_log.scC
+Execution information file written to: /Users/sdf22/Projects/pangea-round2/examl/ExaML_info.scC

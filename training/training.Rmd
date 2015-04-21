@@ -1,0 +1,68 @@
+---
+title: "PANGEA training"
+author: "Simon D.W. Frost"
+date: "21 April 2015"
+output: html_document
+---
+
+```{r}
+library(ape)
+library(magrittr)
+```
+
+```{r}
+datadir <- "150227_PANGEAsim_Regional_Train1"
+gag <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_gag.fa",sep="/"),format="fasta",as.matrix=TRUE)
+pol <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_pol.fa",sep="/"),format="fasta",as.matrix=TRUE)
+env <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_env.fa",sep="/"),format="fasta",as.matrix=TRUE)
+s <- cbind(gag,pol,env)
+s2 <- s
+s2.names <- row.names(s) %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+row.names(s2) <- s2.names
+write.dna(s2,"train.fas",format="fasta",nbcol=-1,colsep="")
+write.dna(s2,"train.phy",format="interleaved")
+```
+
+```{r}
+cmd <- "/usr/local/bin/parse-examl -s train.phy -m DNA -q regional_partition -n train"
+system(cmd)
+```
+
+```{r}
+cmd <- "/usr/local/bin/raxml -y -m GTRCAT -p 12345 -s train.phy -n train_startingtree"
+system(cmd)
+```
+
+```{r}
+cmd <- "mpirun -np 14 /usr/local/bin/examl -D -t RAxML_parsimonyTree.train_startingtree -m PSR -s train.binary -n train"
+```
+
+Also compare against genomes.
+
+BLAST approach.
+
+```{r}
+cmd <- "makeblastdb -in subc_dealign.fasta -input_type fasta -title ref -dbtype nucl -out subc.blastdb"
+system(cmd)
+cmd <- "blastn -query train.fas -task megablast -db subc.blastdb -max_target_seqs 1 -outfmt 10 -out train_blast.txt -evalue 20"
+system(cmd)
+```
+
+Read in BLAST results.
+
+```{r}
+blast <- read.csv("train_blast.txt",header=F,row.names=NULL)
+blast.hits <- unique(paste(blast[,1],blast[,2],sep="|"))
+```
+
+
+Phylogenetic approach.
+
+```{r}
+cmd <- "muscle -profile -in1 subc.fasta -in2 train.fas -out subc_train.fas" # doesnt work
+cmd <- "clustalo --in subc_dealign.fasta --p1 train.fas -o subc_train.fas" # doesnt work
+# cmd <- "cat subc_dealign.fasta train.fas > subc_train_dealign.fas"
+cmd <- "clustalo --in subc_train_dealign.fas -o subc_train_align.fas"
+system(cmd)
+```
+

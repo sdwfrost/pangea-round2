@@ -1,0 +1,74 @@
+
+
+This is ExaML version 3.0.10 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in January 16 2014.
+
+
+Alignment has 6807 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 1440
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2844
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 2523
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/usr/local/bin/examl -D -t RAxML_parsimonyTree.train_startingtree -m PSR -s train.binary -n train 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 25
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.127113
+ML search convergence criterion fast cycle 1->2 Relative Robinson-Foulds 0.049468
+ML search convergence criterion fast cycle 2->3 Relative Robinson-Foulds 0.043832
+ML search convergence criterion fast cycle 3->4 Relative Robinson-Foulds 0.040075
+ML search convergence criterion fast cycle 4->5 Relative Robinson-Foulds 0.016907
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.102693
+ML search convergence criterion thorough cycle 1->2 Relative Robinson-Foulds 0.027552
+ML search converged at thorough SPR cycle 3 with stopping criterion
+Relative Robinson-Foulds (RF) distance between respective best trees after one succseful SPR cycle: 0.006262%
+
+Likelihood of best tree: -2533633.290298
+
+
+Overall Time for 1 Inference 5008.515300
+
+Overall accumulated Time (in case of restarts): 5008.515300
+
+Likelihood   : -2533633.290298
+
+
+Model parameters written to:           /Users/sdf22/Projects/pangea-round2/training/ExaML_modelFile.train
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/training/ExaML_result.train
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/training/ExaML_log.train
+Execution information file written to: /Users/sdf22/Projects/pangea-round2/training/ExaML_info.train
