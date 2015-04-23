@@ -23,6 +23,17 @@ write.dna(s2,"train.fas",format="fasta",nbcol=-1,colsep="")
 write.dna(s2,"train.phy",format="interleaved")
 ```
 
+Now paste the reference files together.
+
+```{r}
+refgag <- read.dna("subc_gag.fas",format="fasta",as.matrix=TRUE)
+refpol <- read.dna("subc_pol.fas",format="fasta",as.matrix=TRUE)
+refenv <- read.dna("subc_env.fas",format="fasta",as.matrix=TRUE)
+ref <- cbind(refgag,refpol,refenv)
+write.dna(ref,"subc_ref.fas",format="fasta",nbcol=-1,colsep="")
+```
+
+
 ```{r}
 cmd <- "/usr/local/bin/parse-examl -s train.phy -m DNA -q regional_partition -n train"
 system(cmd)
@@ -53,16 +64,45 @@ Read in BLAST results.
 ```{r}
 blast <- read.csv("train_blast.txt",header=F,row.names=NULL)
 blast.hits <- unique(paste(blast[,1],blast[,2],sep="|"))
+blast.ego <- blast.hits %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+blast.alter <- blast.hits %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
 ```
 
 
 Phylogenetic approach.
 
 ```{r}
-cmd <- "muscle -profile -in1 subc.fasta -in2 train.fas -out subc_train.fas" # doesnt work
-cmd <- "clustalo --in subc_dealign.fasta --p1 train.fas -o subc_train.fas" # doesnt work
+cmd <- "muscle -profile -in1 subc_ref.fas -in2 train.fas -out subc_ref_train.fas"
+# cmd <- "clustalo --in subc_dealign.fasta --p1 train.fas -o subc_train.fas"
 # cmd <- "cat subc_dealign.fasta train.fas > subc_train_dealign.fas"
-cmd <- "clustalo --in subc_train_dealign.fas -o subc_train_align.fas"
+# cmd <- "clustalo --in subc_train_dealign.fas -o subc_train_align.fas"
 system(cmd)
+```
+
+Trim
+
+```{r}
+cmd <- "trimal -in subc_ref_train.fas -out subc_ref_train.fas.trimal -gt 0.5"
+system(cmd)
+```
+
+Now make FastTree
+
+```{r}
+cmd <- "FastTreeMP -nt -gtr subc_ref_train.fas.trimal > subc_ref_train.fas.trimal.tre"
+system(cmd)
+```
+
+Read in FastTree.
+
+```{r}
+tr <- read.tree("subc_ref_train.fas.trimal.tre")
+tr.root <- midpoint(tr)
+```
+
+Now do parsimony inference.
+
+```{r}
+
 ```
 
