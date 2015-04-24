@@ -7,6 +7,9 @@ output: html_document
 
 ```{r}
 library(ape)
+library(phylobase)
+library(adephylo)
+library(phytools)
 library(magrittr)
 ```
 
@@ -66,7 +69,9 @@ blast <- read.csv("train_blast.txt",header=F,row.names=NULL)
 blast.hits <- unique(paste(blast[,1],blast[,2],sep="|"))
 blast.ego <- blast.hits %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
 blast.alter <- blast.hits %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+table(blast.alter)
 ```
+
 
 
 Phylogenetic approach.
@@ -103,6 +108,116 @@ tr.root <- midpoint(tr)
 Now do parsimony inference.
 
 ```{r}
+assignStatesToNodes <- function(x){
+  class(x) <- "phylo"
+  x <- as(x,"phylo4")
+  # check tree is ultrametric, so we can use just one node to get maximum time
+  treedepth <- as.double(distRoot(x,1))
+  # assign states to tips
+  labels <- attr(x,"label")
+  numtips <- nTips(x)
+  statedict <- list()
+  for(i in 1:numtips){
+    thislabel <- labels[i]
+    if(grepl("IDPOP",as.character(thislabel))){
+      statedict[[as.character(i)]] <- "Y"
+    }else{
+      statedict[[as.character(i)]] <- "I"
+    }
+  }
+  # generate node indexes
+  nodIdx <- nTips(x) + 1
+  nodIdx <- nodIdx:(nodIdx + nNodes(x) - 1)
+  numnodes <- length(nodIdx)
+  dd <- listDD(x,nameBy="number")
+  # get ages of each node
+  alldepth <- nodeDepth(x)
+  nd <- alldepth[nodIdx]
+  o <- order(nd,decreasing=TRUE)
+  numjumps <- 0
+  jumptimes <- c()
+  for(i in 1:numnodes){
+    thisnode <- nodIdx[o[i]]
+    thisnodedesc <- children(x,thisnode)
+    thisnodedesc2 <- as.integer(thisnodedesc)
+    pstate1 <- statedict[[as.character(thisnodedesc[1])]]
+    pstate2 <- statedict[[as.character(thisnodedesc[2])]]
+    if(pstate1==pstate2){
+      statedict[[as.character(thisnode)]] <- pstate1
+    }
+    else{
+      statedict[[as.character(thisnode)]] <- "I"
+      numjumps <- numjumps+1
+      jumptimes <- c(jumptimes,treedepth-alldepth[thisnode])
+    }
+  }
+  jumptimes
+}
+```
 
+```{r}
+tr.root.parsimony <- assignStatesToNodes(tr.root)
+```
+
+Look at distance from root.
+
+```{r}
+dr <- distRoot(tr.root)
+isRef <- !grepl("IDPOP",as.character(tr.root$tip.label))
+boxplot(dr~isRef)
+#tl <- tr$edge.length[1:length(isRef)]
+#boxplot(tl~isRef)
+```
+
+Load in Examl tree.
+
+```{r}
+tr <- read.tree("ExaML_result.train")
+tr.root <- midpoint(tr)
+```
+
+```{r}
+tr.ltt <- ltt.plot(tr.root)
+tr.multi <- di2multi(tr.root,0.005)
+ltt.plot(tr.multi)
+```
+
+```{r}
+library(network)
+library(sna)
+tr.multi.net <- network(tr.multi$edge,directed=FALSE,loops=FALSE)
+tr.multi.deg <- degree(tr.multi.net)
+table(tr.multi.deg) # rather oddly, this doubles the degree
+```
+
+```{r}
+tr.multi.root <- seq(1,length(tr.multi.deg))[tr.multi.deg>100]
+tr.multi.root.edges <- tr.multi$edge[tr.multi$edge[,1]==tr.multi.root|tr.multi$edge[,2]==tr.multi.root,]
+tr.multi.root.alters <- unique(sort(tr.multi.root.edges))
+tr.multi.root.alters <- tr.multi.root.alters[tr.multi.root.alters!=tr.multi.root]
+```
+
+```{r}
+# listTips(tr.multi)
+clusterlist <- list()
+nroots <- length(tr.multi.root.alters)
+ntips <- length(tr.multi$tip.label)
+for(i in 1:nroots){
+  alldesc <- getDescendants(tr.multi,tr.multi.root.alters[i])
+  clusterlist[[i]] <- alldesc[alldesc<=ntips]
+}
+```
+
+```{r}
+lapply(clusterlist,length) %>% unlist %>% table
+```
+
+```{r}
+clusteridlist <- list()
+for(i in 1:length(clusterlist)){
+  ids <- tr.multi$tip.label[clusterlist[[i]]]
+  clusteridlist[[i]] <- ids
+}
+dput(clusteridlist,"clusterids.R")
 ```
 
