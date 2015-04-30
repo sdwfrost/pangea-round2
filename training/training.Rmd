@@ -9,6 +9,7 @@ output: html_document
 library(ape)
 library(phylobase)
 library(adephylo)
+library(phangorn)
 library(phytools)
 library(magrittr)
 ```
@@ -19,11 +20,12 @@ gag <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_gag.fa",sep="/"),
 pol <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_pol.fa",sep="/"),format="fasta",as.matrix=TRUE)
 env <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_env.fa",sep="/"),format="fasta",as.matrix=TRUE)
 s <- cbind(gag,pol,env)
+st <- row.names(s) %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
 s2 <- s
 s2.names <- row.names(s) %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
-row.names(s2) <- s2.names
-write.dna(s2,"train.fas",format="fasta",nbcol=-1,colsep="")
-write.dna(s2,"train.phy",format="interleaved")
+row.names(s2) <- s2.names # paste(s2.names,st,sep="_")
+#write.dna(s2,"train.fas",format="fasta",nbcol=-1,colsep="")
+#write.dna(s2,"train.phy",format="interleaved")
 ```
 
 Now paste the reference files together.
@@ -218,6 +220,20 @@ for(i in 1:length(clusterlist)){
   ids <- tr.multi$tip.label[clusterlist[[i]]]
   clusteridlist[[i]] <- ids
 }
-dput(clusteridlist,"clusterids.R")
+#dput(clusteridlist,"clusterids.R")
 ```
+
+```{r}
+seqlist <- list()
+for(i in 1:length(clusteridlist)){
+  ids <- clusteridlist[[i]]
+  idx <- match(ids,row.names(s2))
+  sq <- s2[idx,]
+  sqt <- st[idx]
+  row.names(sq) <- paste(row.names(sq),sqt,sep="_")
+  seqlist[[i]] <- sq
+  write.dna(sq,paste("clusters/train.fas",i,sep="."),format="fasta",nbcol=-1,colsep="")
+}
+```
+
 

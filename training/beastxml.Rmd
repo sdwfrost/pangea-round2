@@ -1,0 +1,42 @@
+---
+title: "BEAST parsing"
+output: html_document
+---
+
+```{r}
+library(XML)
+```
+
+```{r}
+beast <- xmlParse("beast_train.xml")
+```
+
+Generate alignments.
+
+```{r}
+taxa <- getNodeSet(beast,"/beast/taxa")
+alignment <- getNodeSet(beast,"/beast/alignment")
+patterns <- getNodeSet(beast,"/beast/patterns")
+coalescentSimulator <- getNodeSet(beast,"/beast/coalescentSimulator")
+treeModel <- getNodeSet(beast,"/beast/treeModel")
+coalescentLikelihood <- getNodeSet(beast,"/beast/coalescentLikelihood")
+treeLikelihood <- getNodeSet(beast,"/beast/treeLikelihood")
+operators <- getNodeSet(beast,"/beast/operators")
+likelihood <- getNodeSet(beast,"/beast/mcmc/posterior/likelihood")
+```
+
+
+First, split taxa into clusters.
+
+```{r}
+taxa
+```
+
+
+```{r}
+library(XiMpLe)
+beast <- parseXMLTree("beast_train.xml")
+```
+
+
+

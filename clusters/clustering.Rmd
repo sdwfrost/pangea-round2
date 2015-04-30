@@ -1,0 +1,9 @@
+---
+title: "Clustering"
+output: html_document
+---
+
+```{r}
+list.files(pattern="ExaML_result",path="../examl")
+```
+

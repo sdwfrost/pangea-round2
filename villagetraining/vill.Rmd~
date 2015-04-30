@@ -1,0 +1,37 @@
+```{r}
+library(ape)
+library(magrittr)
+```
+
+```{r}
+s <- read.dna("Vill_99_Apr15/Vill_99_Apr15.fasta",format="fasta",as.matrix=TRUE)
+tr <- read.nexus("Vill_99_Apr15/Vill_99_Apr15.nex")
+tr2 <- tr
+tl1 <- tr$tip.label  %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+tl2 <- tr$tip.label  %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+tl <- paste(tl1,tl2,sep="_")
+tr2$tip.label <- tl
+s2 <- s
+id1 <- row.names(s) %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+id2 <- row.names(s) %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+row.names(s2) <- paste(id1,id2,sep="_")
+write.dna(s2,"vill.phy",format="interleaved")
+```
+
+```{r}
+vill.tn93 <- dist.dna(s,model="TN93")
+vill.nj <- nj(vill.tn93)
+vill.nj.ph85 <- dist.topo(vill.nj,tr)
+```
+
+```{r}
+cmd <- "FastTree -nt -gtr Vill_99_Apr15/Vill_99_Apr15.fasta"
+vill.ft <- system(cmd,intern=TRUE)
+vill.ft.tr <- read.tree(text=vill.ft)
+vill.ft.ph85 <- dist.topo(vill.ft.tr,tr)
+```
+
+```{r}
+vill.ex <- read.tree("ExaML_result.vill")
+vill.ex.ph85 <- dist.topo(vill.ex,tr2)
+```

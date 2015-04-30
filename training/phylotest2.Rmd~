@@ -1,0 +1,116 @@
+```{r}
+library(ape)
+library(phylobase)
+library(adephylo)
+library(phangorn)
+library(phytools)
+library(magrittr)
+```
+
+```{r}
+datadir <- "150227_PANGEAsim_Regional_Train1"
+gag <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_gag.fa",sep="/"),format="fasta",as.matrix=TRUE)
+pol <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_pol.fa",sep="/"),format="fasta",as.matrix=TRUE)
+env <- read.dna(paste(datadir,"150227_HPTN071_TRAIN1_SIMULATED_env.fa",sep="/"),format="fasta",as.matrix=TRUE)
+s <- cbind(gag,pol,env)
+sn <- row.names(s) %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+st <- row.names(s) %>% strsplit(.,"|",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+```
+
+Read in trees.
+
+```{r}
+trees <- read.tree(paste(datadir,"150227_HPTN071_TRAIN1_DATEDTREE.newick",sep="/"))
+numtrees <- length(trees)
+```
+
+```{r}
+slist <- list()
+for(i in 1:numtrees){
+  tr <- trees[[i]]
+  tn <- tr$tip.label
+  idx <- match(tn,row.names(s))
+  slist[[i]] <- s[idx,]
+}
+slen <- lapply(slist,dim) %>% lapply(.,"[",1) %>% unlist
+```
+
+Do simple NJ TN93
+
+```{r}
+njlist <- list()
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    dst <- dist.dna(sq,model="TN93")
+    tr <- nj(dst)
+    njlist[[i]] <- tr
+  }else{
+    njlist[[i]] <- NA
+  }
+}
+```
+
+```{r}
+testtrees <- njlist
+phdist <- list()
+kfdist <- list()
+for(i in 1:numtrees){
+  print(i)
+  tr1 <- testtrees[[i]]
+  tr2 <- trees[[i]]
+  if(!is.na(tr1)){
+    phdist[[i]] <- dist.topo(tr1,tr2,"PH85")
+    kfdist[[i]] <- dist.topo(tr1,tr2,"score")
+  }else{
+    phdist[[i]] <- NA
+    kfdist[[i]] <- NA
+  }
+}
+nj.phdist <- phdist
+nj.kfdist <- kfdist
+table(nj.phdist %>% unlist %>% na.omit %>% as.integer)
+hist(nj.kfdist %>% unlist %>% na.omit %>% as.numeric)
+```
+
+Do simple ML
+
+```{r}
+mllist <- list()
+mlfitlist <- list()
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    o <- pml(njlist[[i]],as.phyDat(sq),model="GTR",inv=0.01,k=4,shape=0.1)
+    fit <- optim.pml(o,optNni=TRUE,optBf=TRUE,optQ=TRUE,optEdge=TRUE,optGamma=TRUE,optInv=TRUE)
+    mlfitlist[[i]] <- fit
+    mllist[[i]] <- fit$tree
+  }else{
+    mlfitlist[[i]] <- NA
+    mllist[[i]] <- NA
+  }
+}
+```
+
+```{r}
+pmllist <- list()
+idxlist <- list()
+idx <- 1
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    o <- pml(njlist[[i]],as.phyDat(sq),model="GTR",inv=0.01,k=4,shape=0.5)
+    pmllist[[idx]] <- o
+    idxlist[[idx]] <- i
+    idx <- idx+1
+  }
+}
+```
+
+```{r}
+mlfit <- pmlPart(bf+Q+inv+shape~edge+nni,pmllist)
+```
+

@@ -1,0 +1,368 @@
+
+. Starting tree: BioNJ
+. Tree topology search: spr
+. Processed 3 data sets ( gag.phy, pol.phy, env.phy )
+. Final log-likelihood: -22755.013035
+
+
+ _______________________________________________________________________ 
+|                                                                       |
+|                                  gag.phy      (partition element  0)  |
+|_______________________________________________________________________|
+
+. Number of rate classes:		           5
+. Model of rate variation:		   Gamma+Inv
+. Gamma shape parameter value:		       98.75
+   Optimise: 				         yes
+. Proportion of invariable sites:	        0.71
+   Optimise: 				         yes
+. Relative average rate:		    1.000000
+
+. Mixture class 1
+   Relative substitution rate:	    0.000000
+   Relative rate freq.:		    0.705330
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.04
+   Subst. rate A<->G:		        6.20
+   Subst. rate A<->T:		        1.10
+   Subst. rate C<->G:		        0.69
+   Subst. rate C<->T:		        7.30
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.200000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.38
+   Freq(C):			        0.19
+   Freq(G):			        0.25
+   Freq(T):			        0.19
+   Equ. freq. weight:		    0.200000
+
+. Mixture class 2
+   Relative substitution rate:	    0.875144
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           0
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.04
+   Subst. rate A<->G:		        6.20
+   Subst. rate A<->T:		        1.10
+   Subst. rate C<->G:		        0.69
+   Subst. rate C<->T:		        7.30
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.200000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.38
+   Freq(C):			        0.19
+   Freq(G):			        0.25
+   Freq(T):			        0.19
+   Equ. freq. weight:		    0.200000
+
+. Mixture class 3
+   Relative substitution rate:	    0.964499
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           1
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.04
+   Subst. rate A<->G:		        6.20
+   Subst. rate A<->T:		        1.10
+   Subst. rate C<->G:		        0.69
+   Subst. rate C<->T:		        7.30
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.200000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.38
+   Freq(C):			        0.19
+   Freq(G):			        0.25
+   Freq(T):			        0.19
+   Equ. freq. weight:		    0.200000
+
+. Mixture class 4
+   Relative substitution rate:	    1.029716
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           2
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.04
+   Subst. rate A<->G:		        6.20
+   Subst. rate A<->T:		        1.10
+   Subst. rate C<->G:		        0.69
+   Subst. rate C<->T:		        7.30
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.200000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.38
+   Freq(C):			        0.19
+   Freq(G):			        0.25
+   Freq(T):			        0.19
+   Equ. freq. weight:		    0.200000
+
+. Mixture class 5
+   Relative substitution rate:	    1.130640
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           3
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.04
+   Subst. rate A<->G:		        6.20
+   Subst. rate A<->T:		        1.10
+   Subst. rate C<->G:		        0.69
+   Subst. rate C<->T:		        7.30
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.200000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.38
+   Freq(C):			        0.19
+   Freq(G):			        0.25
+   Freq(T):			        0.19
+   Equ. freq. weight:		    0.200000
+
+
+ _______________________________________________________________________ 
+|                                                                       |
+|                                  pol.phy      (partition element  1)  |
+|_______________________________________________________________________|
+
+. Number of rate classes:		           5
+. Model of rate variation:		   Gamma+Inv
+. Gamma shape parameter value:		       99.55
+   Optimise: 				         yes
+. Proportion of invariable sites:	        0.77
+   Optimise: 				         yes
+. Relative average rate:		    1.000000
+
+. Mixture class 1
+   Relative substitution rate:	    0.000000
+   Relative rate freq.:		    0.773912
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.27
+   Subst. rate A<->G:		       10.74
+   Subst. rate A<->T:		        1.14
+   Subst. rate C<->G:		        0.56
+   Subst. rate C<->T:		       14.01
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.333333
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.40
+   Freq(C):			        0.16
+   Freq(G):			        0.23
+   Freq(T):			        0.22
+   Equ. freq. weight:		    0.333333
+
+. Mixture class 2
+   Relative substitution rate:	    0.875633
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           0
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.27
+   Subst. rate A<->G:		       10.74
+   Subst. rate A<->T:		        1.14
+   Subst. rate C<->G:		        0.56
+   Subst. rate C<->T:		       14.01
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.333333
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.40
+   Freq(C):			        0.16
+   Freq(G):			        0.23
+   Freq(T):			        0.22
+   Equ. freq. weight:		    0.333333
+
+. Mixture class 3
+   Relative substitution rate:	    0.964653
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           1
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.27
+   Subst. rate A<->G:		       10.74
+   Subst. rate A<->T:		        1.14
+   Subst. rate C<->G:		        0.56
+   Subst. rate C<->T:		       14.01
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.333333
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.40
+   Freq(C):			        0.16
+   Freq(G):			        0.23
+   Freq(T):			        0.22
+   Equ. freq. weight:		    0.333333
+
+. Mixture class 4
+   Relative substitution rate:	    1.029609
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           2
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.27
+   Subst. rate A<->G:		       10.74
+   Subst. rate A<->T:		        1.14
+   Subst. rate C<->G:		        0.56
+   Subst. rate C<->T:		       14.01
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.333333
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.40
+   Freq(C):			        0.16
+   Freq(G):			        0.23
+   Freq(T):			        0.22
+   Equ. freq. weight:		    0.333333
+
+. Mixture class 5
+   Relative substitution rate:	    1.130105
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           3
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.27
+   Subst. rate A<->G:		       10.74
+   Subst. rate A<->T:		        1.14
+   Subst. rate C<->G:		        0.56
+   Subst. rate C<->T:		       14.01
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    0.333333
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.40
+   Freq(C):			        0.16
+   Freq(G):			        0.23
+   Freq(T):			        0.22
+   Equ. freq. weight:		    0.333333
+
+
+ _______________________________________________________________________ 
+|                                                                       |
+|                                  env.phy      (partition element  2)  |
+|_______________________________________________________________________|
+
+. Number of rate classes:		           5
+. Model of rate variation:		   Gamma+Inv
+. Gamma shape parameter value:		        8.27
+   Optimise: 				         yes
+. Proportion of invariable sites:	        0.54
+   Optimise: 				         yes
+. Relative average rate:		    1.000000
+
+. Mixture class 1
+   Relative substitution rate:	    0.000000
+   Relative rate freq.:		    0.544937
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.14
+   Subst. rate A<->G:		        4.48
+   Subst. rate A<->T:		        0.92
+   Subst. rate C<->G:		        0.70
+   Subst. rate C<->T:		        4.65
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    1.000000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.36
+   Freq(C):			        0.17
+   Freq(G):			        0.23
+   Freq(T):			        0.24
+   Equ. freq. weight:		    1.000000
+
+. Mixture class 2
+   Relative substitution rate:	    0.599001
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           0
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.14
+   Subst. rate A<->G:		        4.48
+   Subst. rate A<->T:		        0.92
+   Subst. rate C<->G:		        0.70
+   Subst. rate C<->T:		        4.65
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    1.000000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.36
+   Freq(C):			        0.17
+   Freq(G):			        0.23
+   Freq(T):			        0.24
+   Equ. freq. weight:		    1.000000
+
+. Mixture class 3
+   Relative substitution rate:	    0.855432
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           1
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.14
+   Subst. rate A<->G:		        4.48
+   Subst. rate A<->T:		        0.92
+   Subst. rate C<->G:		        0.70
+   Subst. rate C<->T:		        4.65
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    1.000000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.36
+   Freq(C):			        0.17
+   Freq(G):			        0.23
+   Freq(T):			        0.24
+   Equ. freq. weight:		    1.000000
+
+. Mixture class 4
+   Relative substitution rate:	    1.076029
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           2
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.14
+   Subst. rate A<->G:		        4.48
+   Subst. rate A<->T:		        0.92
+   Subst. rate C<->G:		        0.70
+   Subst. rate C<->T:		        4.65
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    1.000000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.36
+   Freq(C):			        0.17
+   Freq(G):			        0.23
+   Freq(T):			        0.24
+   Equ. freq. weight:		    1.000000
+
+. Mixture class 5
+   Relative substitution rate:	    1.469537
+   Rel. rate freq. (> 0 rates):	    0.250000
+   Rate class number:		           3
+   Substitution model:		         GTR
+   Optimise subst. rates:	         yes
+   Subst. rate A<->C:		        2.14
+   Subst. rate A<->G:		        4.48
+   Subst. rate A<->T:		        0.92
+   Subst. rate C<->G:		        0.70
+   Subst. rate C<->T:		        4.65
+   Subst. rate G<->T:		        1.00
+   Rate matrix weight:		    1.000000
+   Optimise nucletide freq.:	         yes
+   Freq(A):			        0.36
+   Freq(C):			        0.17
+   Freq(G):			        0.23
+   Freq(T):			        0.24
+   Equ. freq. weight:		    1.000000
+
+
+ _______________________________________________________________________ 
+|                                                                       |
+|                        Model summary table                            |
+|_______________________________________________________________________|
+
+  ---------------------------------------------------------------
+  Partition element  0  0  0  0  0  1  1  1  1  1  2  2  2  2  2 
+  ---------------------------------------------------------------
+  State frequencies  a  a  a  a  a  b  b  b  b  b  c  c  c  c  c 
+     Branch lengths  a  a  a  a  a  a  a  a  a  a  a  a  a  a  a 
+        Rate matrix  a  a  a  a  a  b  b  b  b  b  c  c  c  c  c 
+  ---------------------------------------------------------------
+
+
+. Tree estimated from data partition 0
+ (IDPOP_45327|F|DOB_1974.83|2006.62:0.01661614,IDPOP_51647|F|DOB_1978.92|2013.4:0.02671351,(IDPOP_41511|M|DOB_1972.27|2000.33:0.02360669,((IDPOP_33250|M|DOB_1966.15|2010.5:0.02900809,IDPOP_46067|M|DOB_1975.35|2002.02:0.01498681):0.01174725,(IDPOP_67317|F|DOB_1987.27|2015.75:0.05665234,(IDPOP_38124|F|DOB_1969.92|2006.96:0.02235839,(IDPOP_43368|F|DOB_1973.54|2005.88:0.02584684,(IDPOP_33322|F|DOB_1966.21|2005.88:0.03068625,(IDPOP_62138|M|DOB_1984.73|2014.6:0.01458185,(IDPOP_76310|F|DOB_1991.27|2007.5:0.00241980,(IDPOP_75438|M|DOB_1990.92|2012.27:0.00759233,IDPOP_75839|M|DOB_1991.08|2014.71:0.00832706):0.00012742):0.00435204):0.02452689):0.00103674):0.00287638):0.00049775):0.00069676):0.01395010):0.02409568);
+
+. Tree estimated from data partition 1
+ (IDPOP_45327|F|DOB_1974.83|2006.62:0.01661614,IDPOP_51647|F|DOB_1978.92|2013.4:0.02671351,(IDPOP_41511|M|DOB_1972.27|2000.33:0.02360669,((IDPOP_33250|M|DOB_1966.15|2010.5:0.02900809,IDPOP_46067|M|DOB_1975.35|2002.02:0.01498681):0.01174725,(IDPOP_67317|F|DOB_1987.27|2015.75:0.05665234,(IDPOP_38124|F|DOB_1969.92|2006.96:0.02235839,(IDPOP_43368|F|DOB_1973.54|2005.88:0.02584684,(IDPOP_33322|F|DOB_1966.21|2005.88:0.03068625,(IDPOP_62138|M|DOB_1984.73|2014.6:0.01458185,(IDPOP_76310|F|DOB_1991.27|2007.5:0.00241980,(IDPOP_75438|M|DOB_1990.92|2012.27:0.00759233,IDPOP_75839|M|DOB_1991.08|2014.71:0.00832706):0.00012742):0.00435204):0.02452689):0.00103674):0.00287638):0.00049775):0.00069676):0.01395010):0.02409568);
+
+. Tree estimated from data partition 2
+ (IDPOP_45327|F|DOB_1974.83|2006.62:0.01661614,IDPOP_51647|F|DOB_1978.92|2013.4:0.02671351,(IDPOP_41511|M|DOB_1972.27|2000.33:0.02360669,((IDPOP_33250|M|DOB_1966.15|2010.5:0.02900809,IDPOP_46067|M|DOB_1975.35|2002.02:0.01498681):0.01174725,(IDPOP_67317|F|DOB_1987.27|2015.75:0.05665234,(IDPOP_38124|F|DOB_1969.92|2006.96:0.02235839,(IDPOP_43368|F|DOB_1973.54|2005.88:0.02584684,(IDPOP_33322|F|DOB_1966.21|2005.88:0.03068625,(IDPOP_62138|M|DOB_1984.73|2014.6:0.01458185,(IDPOP_76310|F|DOB_1991.27|2007.5:0.00241980,(IDPOP_75438|M|DOB_1990.92|2012.27:0.00759233,IDPOP_75839|M|DOB_1991.08|2014.71:0.00832706):0.00012742):0.00435204):0.02452689):0.00103674):0.00287638):0.00049775):0.00069676):0.01395010):0.02409568);
