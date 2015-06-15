@@ -34,11 +34,16 @@ tn <- tt.unroot$tip.label
 td <- strsplit(tt.unroot$tip.label,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
 #write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
 #write.tree(tt.unroot,paste(stub,"_unrooted.tre",sep=""))
+tt.unroot <- unroot(truetree)
+tn <- tt.unroot$tip.label
+td <- strsplit(tt.unroot$tip.label,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+write.tree(tt.unroot,paste(stub,"_unrooted.tre",sep=""))
 ```
 
 ```{r}
 lsd.cmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"_unrooted.tre",sep=""),paste(stub,".td",sep=""),paste(10),6987)
-#lsd <- system(lsd.cmd,intern=TRUE)
+lsd <- system(lsd.cmd,intern=TRUE)
 ```
 
 ```{r}
@@ -85,7 +90,6 @@ tt.rx2n <- tt.rx2
 tt.rx2n$edge.length <- tt.rx2n$edge.length/sum(tt.rx2n$edge.length)
 treedist(tt.rx2n,truetree2n)
 ```
-
 Save trees to file.
 
 ```{r}
@@ -105,3 +109,4 @@ kmat <- do.call(rbind,python.get("pk.kmat.tolist()"))
 dm <- diag(1./sqrt(diag(kmat)))
 kmat.norm <- dm %*% kmat %*% dm
 ```
+
