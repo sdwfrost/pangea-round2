@@ -1,0 +1,65 @@
+
+
+This is ExaML version 3.0.11 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in April 10 2014.
+
+
+Alignment has 4835 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 1017
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2017
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1801
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/home/simon/bin/examl -t RAxML_parsimonyTree.vill_startingtree -m PSR -s vill.binary -n vill_strict 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 5
+
+Likelihood of best tree: -916357.683248
+
+
+Overall Time for 1 Inference 8958.710125
+
+Overall accumulated Time (in case of restarts): 8958.710125
+
+Likelihood   : -916357.683248
+
+
+Model parameters written to:           /home/simon/projects/pangea-round2/examl/ExaML_modelFile.vill_strict
+Final tree written to:                 /home/simon/projects/pangea-round2/examl/ExaML_result.vill_strict
+Execution Log File written to:         /home/simon/projects/pangea-round2/examl/ExaML_log.vill_strict
+Execution information file written to: /home/simon/projects/pangea-round2/examl/ExaML_info.vill_strict

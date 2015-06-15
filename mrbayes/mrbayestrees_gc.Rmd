@@ -1,0 +1,162 @@
+```{r}
+library(ape)
+library(magrittr)
+```
+
+
+```{r}
+seqdata.fn <- list.files(path=".",pattern=".phy$",full.names=TRUE)
+numsc <- length(seqdata.fn)
+seqdata <- list()
+for(i in 1:numsc){
+    seqdata[[i]] <- read.dna(seqdata.fn[i],format="interleaved",as.matrix=FALSE) # NB as.matrix=FALSE required for NEXUS output as below
+}
+```
+
+```{r}
+stubs <- rep("",numsc)
+for(i in 1:numsc){
+  stubs[i] <- seqdata.fn[i] %>% strsplit(.,"/") %>% unlist %>% tail(.,1) %>% strsplit(.,".",fixed=TRUE) %>% unlist %>% head(.,1)
+}
+```
+
+```{r}
+tdlist <- list()
+tdnames <- c("scA.td","scB.td","scC.td","scD.td")
+for(i in 1:length(tdnames)){
+  tdlist[[i]] <- read.table(tdnames[i],header=F,row.names=NULL,skip=1)
+}
+```
+
+```{r}
+for(i in 1:numsc){
+  s <- seqdata[[i]]
+  write.nexus.data(as.character(s),paste(stubs[i],".nex",sep=""),format="dna",interleaved=FALSE)
+}
+```
+
+Generate tree block.
+
+```{r}
+regional.partition <- "
+   charset gag = 1-1440;
+   charset pol = 1441-4284;
+   charset env = 4285-6807;
+   partition regional = 3: gag, pol, env;
+   set partition = regional;
+"
+partition.vec <- rep(regional.partition,numsc)
+```
+
+```{r}
+relaxedclock.fixed <- "
+  set autoclose=yes;
+  lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
+  prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
+  unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
+  prset applyto=(all) ratepr=variable;
+  prset brlenspr=clock:uniform;
+  prset topologypr=fixed(tree_1);
+  prset clockratepr=lognorm(-9.0,1.0);
+  prset clockvar=igr;
+  prset nodeagepr=calibrated;
+"
+relaxedclock <- "
+  set autoclose=yes;
+  lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
+  prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
+  unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
+  prset applyto=(all) ratepr=variable;
+  prset brlenspr=clock:uniform;
+  prset topologypr=uniform;
+  prset clockratepr=lognorm(-9.0,1.0);
+  prset clockvar=igr;
+  prset nodeagepr=calibrated;
+"
+strictclock <- "
+  set autoclose=yes;
+  lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
+  prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
+  unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
+  prset applyto=(all) ratepr=variable;
+  prset brlenspr=clock:uniform;
+  prset topologypr=uniform;
+  prset clockratepr=lognorm(-9.0,1.0);
+  prset clockvar=strict;
+  prset nodeagepr=calibrated;
+"
+clock.vec <- rep(strictclock,numsc)
+```
+
+```{r}
+calibrations.list <- list()
+for(i in 1:numsc){
+  s <- seqdata[[i]]
+  ids <-  row.names(s)
+  tddf <- tdlist[[i]]
+  tipdates <- tddf[match(ids,tddf[,1]),2]
+  tipage <- -(tipdates-max(tipdates))
+  numseqs <- dim(s)[1]
+  mbblock <- rep("",numseqs)
+  for(j in 1:numseqs){
+    tipname <- ids[j]
+    #mbblock[j] <- paste("calibrate ",tipname,"=Uniform(",tipage[j],",",tipage[j],");",sep="")
+    mbblock[j] <- paste("calibrate ",tipname,"=fixed(",tipage[j],");",sep="")
+  }
+  mbblock <- paste(mbblock,collapse="\n")
+  calibrations.list[[i]] <- mbblock
+}
+```
+
+try fixed topology or fix proposals
+
+usertree = ;
+propset eTBR(Tau)$prob=0;
+propset nslider(V)$prob=5;
+
+```{r}
+mcmcpars <- "
+mcmc ngen=22000000 nruns=1 nchains=1 samplefreq=10000;
+"
+mcmc.vec <- rep(mcmcpars,numsc)
+```
+
+trees, rooted using rtt
+
+```{r}
+trees.fn <- list.files(path="../raxml",pattern="bestTree")
+trees.fn <- c(rep("",8),trees.fn)
+trees <- list()
+for(i in 1:numsc){
+  trees[[i]] <- readLines(paste("../raxml/",trees.fn[i],sep=""))
+}
+for(i in 9:numsc){
+  tr <- trees[[i]]
+  tr <- read.tree(text=tr)
+  tr <- unroot(tr)
+  tl <- tr$tip.label
+  td <- tl %>% strsplit(.,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+  id1 <-  tl %>% strsplit(.,"\\-|\\|") %>% lapply(.,head,1) %>% unlist %>% as.character
+  id2 <-  tl %>% strsplit(.,"\\-|\\|") %>% lapply(.,"[",2) %>% unlist %>% as.character
+  ids <- paste(id1,id2,sep="_")
+  tr$tip.label <- ids
+  tr.rtt <- rtt(tr,td,objective="rsquared")
+  #dr <- distRoot(tr.rtt)
+  #idx <- match(tr.rtt$tip.label,ids)
+  #plot(dr~td[idx])
+  trees[[i]] <- write.tree(tr.rtt)
+}
+```
+
+
+```{r}
+for(i in 1:numsc){
+  myseqs.nex <- paste(readLines(paste(stubs[i],".nex",sep="")),collapse="\n")
+  myseqs.nex <- gsub("DATATYPEDNA","DATATYPE=DNA",myseqs.nex,fixed=TRUE)
+  #mytrees.nex <- sprintf("begin trees;\n tree tree_1=%s\nend;\n",trees[[i]])
+  myseqs.mb <- sprintf("begin mrbayes;\n%s%s%s%send;\n",partition.vec[i],clock.vec[i],calibrations.list[[i]],mcmc.vec[i])
+  #cat(myseqs.nex,mytrees.nex,myseqs.mb,file=paste(stubs[i],"_mb_clock.nex",sep=""),sep="\n")
+  cat(myseqs.nex,myseqs.mb,file=paste(stubs[i],"_mb_clock.nex",sep=""),sep="\n")
+}
+```
+

@@ -1,0 +1,166 @@
+---
+title: "Split tree"
+output: html_document
+---
+
+```{r}
+library(ape)
+library(magrittr)
+library(adephylo)
+library(phytools)
+library(XML)
+source("makeXML.R")
+```
+
+
+```{r}
+stub <- "villagetrain"
+ex.tr.fn <- "../villagetraining/ExaML_result.vill"
+ex.td <- read.table("../villagetraining/vill.td",skip=1)
+ex.td[,1] <- paste(ex.td[,1] %>% as.character %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist,
+      ex.td[,1] %>% as.character %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist,
+      sep="_")
+s <- read.dna("../villagetraining/vill.phy",format="interleaved")
+slen <- dim(s)[2]
+treedepth <- 20
+minslice <- 10
+seq.partition <- "
+   charset gag = 1-1479;
+   charset pol = 1480-4479;
+   charset env = 4480-6987;
+   partition villages = 3: gag, pol, env;
+   set partition = villages;
+"
+mbmodel <- "
+  set autoclose=yes;
+  lset applyto=(all) nst=6 rates=invgamma ngammacat=4;
+  prset statefreqpr=Dirichlet(1.0,1.0,1.0,1.0);
+  unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all);
+  prset applyto=(all) ratepr=variable;
+  prset brlenspr=clock:uniform;
+  prset topologypr=uniform;
+  prset clockratepr=lognorm(-9.0,1.0);
+  prset clockvar=igr;
+  prset nodeagepr=calibrated;
+"
+mcmcpilot <- "
+mcmc ngen=1100000 nruns=1 nchains=1 samplefreq=10000;
+"
+mcmcpars <- "
+mcmc ngen=11000000 nruns=2 nchains=2 samplefreq=10000;
+"
+```
+
+
+Take ExaML tree.
+
+```{r}
+ex.tr <- read.tree(ex.tr.fn)
+write.tree(ex.tr,paste(stub,"tre",sep="."))
+```
+
+Save tip dates.
+
+```{r}
+tn <- ex.td[,1]
+td <- ex.td[,2]
+write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+```
+
+LSD tree.
+
+```{r}
+lsd.cmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"tre",sep="."),paste(stub,".td",sep=""),paste(10),slen)
+system(lsd.cmd)
+```
+
+Read in tree.
+
+```{r}
+tr.lsd <- read.tree(sprintf("%s_result_newick_date.txt",stub))
+ltt(tr.lsd)
+```
+
+Slice tree into chunks.
+
+```{r}
+tr.lsd.rd <- distRoot(tr.lsd)
+slicetime <- max(tr.lsd.rd)-treedepth
+tr.lsd.slicetrees <- treeSlice(tr.lsd,slice=slicetime,trivial=TRUE)
+tr.lsd.slicesize <- lapply(tr.lsd.slicetrees,"[[","tip.label") %>% lapply(.,length) %>% unlist
+table(tr.lsd.slicesize)
+```
+
+Extract taxa with >= minslice taxa
+
+```{r}
+tr.lsd.minslicetrees <- tr.lsd.slicetrees[tr.lsd.slicesize>=minslice]
+numminslicetrees <- length(tr.lsd.minslicetrees)
+```
+
+```{r}
+tr.lsd.minslice.seqs <- list()
+for(i in 1:numminslicetrees){
+  tr <- tr.lsd.minslicetrees[[i]]
+  tr.lsd.minslice.seqs[[i]] <- s[match(tr$tip.label,row.names(s)),]
+}
+```
+
+Now generate BEAST file.
+
+```{r}
+multiseqs <- do.call(rbind,tr.lsd.minslice.seqs)
+multiseqs.tn <- row.names(multiseqs)
+multiseqs.idx <- match(multiseqs.tn,tn)
+multiseqs.td <- td[multiseqs.idx]
+multiseqs.clusters <- list()
+for(i in 1:numminslicetrees){
+  multiseqs.clusters[[i]] <- row.names(tr.lsd.minslice.seqs[[i]])
+}
+options(scipen=999)
+getMultiLocusXML(multiseqs,multiseqs.td,multiseqs.clusters,11000000,10000,"vill_test2")
+```
+
+
+Fit MB to chunks separately.
+
+```{r}
+dir.create(stub)
+for(i in 1:numminslicetrees){
+  sq <- tr.lsd.minslice.seqs[[i]]
+  write.nexus.data(sq,paste(stub,"/",i,".nex",sep=""),format="dna",interleaved=FALSE)
+  ids <-  row.names(sq)
+  tipdates <- td[match(ids,tn)]
+  tipage <- -(tipdates-max(tipdates))
+  numseqs <- dim(sq)[1]
+  mbblock <- rep("",numseqs)
+  for(j in 1:numseqs){
+    tipname <- ids[j]
+    #mbblock[j] <- paste("calibrate ",tipname,"=Uniform(",tipage[j],",",tipage[j],");",sep="")
+    mbblock[j] <- paste("calibrate ",tipname,"=fixed(",tipage[j],");",sep="")
+  }
+  mbblock <- paste(mbblock,collapse="\n")
+  calibrations <- mbblock
+  myseqs.nex <- paste(readLines(paste(stub,"/",i,".nex",sep="")),collapse="\n")
+  myseqs.nex <- gsub("DATATYPEDNA","DATATYPE=DNA",myseqs.nex,fixed=TRUE)
+  #mytrees.nex <- sprintf("begin trees;\n tree tree_1=%s\nend;\n",trees[[i]])
+  myseqs.mb <- sprintf("begin mrbayes;\n%s%s%s%send;\n",seq.partition,mbmodel,calibrations,mcmcpilot)
+  #cat(myseqs.nex,mytrees.nex,myseqs.mb,file=paste(stubs[i],"_mb_clock.nex",sep=""),sep="\n")
+  mbclockfile <- paste(stub,"/",i,"_mb_clock.nex",sep="")
+  cat(myseqs.nex,myseqs.mb,file=mbclockfile,sep="\n")
+  mbcmd <- paste("mb",mbclockfile)
+  system(mbcmd)
+}
+
+```
+
+Obtain posterior estimates of parameters.
+
+Pool estimates.
+
+Rerun MB using fixed parameter values.
+
+Get MCC for each tree.
+
+Compare.
+

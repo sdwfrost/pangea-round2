@@ -250,6 +250,151 @@ table(rxp2.phdist %>% unlist %>% na.omit %>% as.integer)
 hist(rxp2.kfdist %>% unlist %>% na.omit %>% as.numeric)
 ```
 
+iqtree
+
+```{r}
+iqlist <- list()
+iqloglist <- list()
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    td <- tempdir()
+    fn <- tempfile(tmpdir=td,fileext=".phy")
+    write.dna(sq,fn,format="interleaved")
+    cmd <- sprintf("iqtree-omp -nt 2 -s %s -spp regional_partition.nex",fn)
+    system(cmd)
+    tr <- read.tree("regional_partition.nex.treefile")
+    l <- readLines("regional_partition.nex.iqtree")
+    iqlist[[i]] <- tr
+    iqloglist[[i]] <- l
+    unlink(fn)
+    }else{
+      iqlist[[i]] <- NA
+      iqloglist[[i]] <- NA
+      }
+ }
+```
+
+```{r}
+testtrees <- iqlist
+phdist <- list()
+kfdist <- list()
+for(i in 1:numtrees){
+  print(i)
+  tr1 <- testtrees[[i]]
+  tr2 <- trees[[i]]
+  if(!is.na(tr1)){
+    phdist[[i]] <- dist.topo(tr1,tr2,"PH85")
+    kfdist[[i]] <- dist.topo(tr1,tr2,"score")
+  }else{
+    phdist[[i]] <- NA
+    kfdist[[i]] <- NA
+  }
+}
+iq.phdist <- phdist
+iq.kfdist <- kfdist
+table(iq.phdist %>% unlist %>% na.omit %>% as.integer)
+hist(iq.kfdist %>% unlist %>% na.omit %>% as.numeric)
+```
+
+```{r}
+iqjlist <- list()
+iqjloglist <- list()
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    td <- tempdir()
+    fn <- tempfile(tmpdir=td,fileext=".phy")
+    write.dna(sq,fn,format="interleaved")
+    cmd <- sprintf("iqtree-omp -nt 2 -s %s -spj regional_partition.nex",fn)
+    system(cmd)
+    tr <- read.tree("regional_partition.nex.treefile")
+    l <- readLines("regional_partition.nex.iqtree")
+    iqjlist[[i]] <- tr
+    iqjloglist[[i]] <- l
+    unlink(fn)
+    }else{
+      iqjlist[[i]] <- NA
+      iqjloglist[[i]] <- NA
+      }
+ }
+```
+
+```{r}
+testtrees <- iqjlist
+phdist <- list()
+kfdist <- list()
+for(i in 1:numtrees){
+  print(i)
+  tr1 <- testtrees[[i]]
+  tr2 <- trees[[i]]
+  if(!is.na(tr1)){
+    phdist[[i]] <- dist.topo(tr1,tr2,"PH85")
+    kfdist[[i]] <- dist.topo(tr1,tr2,"score")
+  }else{
+    phdist[[i]] <- NA
+    kfdist[[i]] <- NA
+  }
+}
+iqj.phdist <- phdist
+iqj.kfdist <- kfdist
+table(iqj.phdist %>% unlist %>% na.omit %>% as.integer)
+hist(iqj.kfdist %>% unlist %>% na.omit %>% as.numeric)
+```
+
+
+examl
+
+```{r}
+exlist <- list()
+for(i in 1:numtrees){
+  print(i)
+  sq <- slist[[i]]
+  if(slen[i]>=4){
+    td <- tempdir()
+    fn <- tempfile(tmpdir=td)
+    runid <- strsplit(fn,"/") %>% lapply(.,tail,1) %>% unlist
+    write.dna(sq,paste(fn,".phy",sep=""),format="interleaved")
+    # turn binary
+    cmd1 <- sprintf("/usr/local/bin/parse-examl -s %s.phy -m DNA -q %s -n %s",fn,"regional_partition",runid)
+    system(cmd1)
+    cmd2 <- sprintf("raxmlHPC-PTHREADS-SSE3 -y -m GTRCAT -p 12345 -s %s.phy -n %s_startingtree",fn,runid)
+    system(cmd2)
+    cmd3 <- sprintf("mpirun -np 7 /usr/local/bin/examl -D -t RAxML_parsimonyTree.%s_startingtree -m PSR -s %s.binary -n %s -w %s",runid,runid,runid,td)
+    system(cmd3)
+    tr <- read.tree(paste(td,"/","ExaML_result.",runid,sep=""))
+    exlist[[i]] <- tr
+    unlink(fn)
+    }else{
+      exlist[[i]] <- NA
+      }
+ }
+```
+
+```{r}
+testtrees <- exlist
+phdist <- list()
+kfdist <- list()
+for(i in 1:numtrees){
+  print(i)
+  tr1 <- testtrees[[i]]
+  tr2 <- trees[[i]]
+  if(!is.na(tr1)){
+    phdist[[i]] <- dist.topo(tr1,tr2,"PH85")
+    kfdist[[i]] <- dist.topo(tr1,tr2,"score")
+  }else{
+    phdist[[i]] <- NA
+    kfdist[[i]] <- NA
+  }
+}
+ex.phdist <- phdist
+ex.kfdist <- kfdist
+table(ex.phdist %>% unlist %>% na.omit %>% as.integer)
+hist(ex.kfdist %>% unlist %>% na.omit %>% as.numeric)
+```
+
 PhyML
 
 First make XML file.
@@ -471,11 +616,11 @@ for(i in 1:numtrees){
   print(i)
   sq <- slist[[i]]
   if(slen[i]>=4){
-    gag.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,1:1440]),model="GTR",inv=0.01,k=4,shape=0.5)
+    gag.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,1:1440]),model="GTR",inv=0.3,k=4,shape=1.0)
     gag.pmllist[[idx]] <- gag.o
-    pol.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,1441:4284]),model="GTR",inv=0.01,k=4,shape=0.5)
+    pol.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,1441:4284]),model="GTR",inv=0.3,k=4,shape=1.0)
     pol.pmllist[[idx]] <- pol.o
-    env.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,4285:6807]),model="GTR",inv=0.01,k=4,shape=0.5)
+    env.o <- pml(unroot(rxplist[[i]]),as.phyDat(sq[,4285:6807]),model="GTR",inv=0.3,k=4,shape=1.0)
     env.pmllist[[idx]] <- env.o
     idxlist[[idx]] <- i
     idx <- idx+1
@@ -498,7 +643,7 @@ for(i in 1:numtrees){
   print(i)
   sq <- slist[[i]]
   if(slen[i]>=4){
-    o <- pml(njlist[[i]],as.phyDat(sq),model="GTR",inv=0.01,k=4,shape=0.5)
+    o <- pml(njlist[[i]],as.phyDat(sq),model="GTR",inv=0.3,k=4,shape=1.0)
     pmllist[[idx]] <- o
     idxlist[[idx]] <- i
     idx <- idx+1

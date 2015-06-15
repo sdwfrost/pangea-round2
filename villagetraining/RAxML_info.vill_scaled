@@ -61,3 +61,64 @@ RAxML was called as follows:
 raxmlHPC-PTHREADS-SSE3 -s vill.phy -f B -m GTRGAMMAI -n vill_scaled -T 4 -p 1 -q villages_partition -t vill_scaled.tre 
 
 
+Likelihood: -917173.008563
+
+
+Overall Time for Tree Evaluation with branch length scalers: 1212.328905
+Final GAMMA  likelihood: -917173.008563
+
+Number of free parameters for AIC-TEST(BR-LEN): 33
+Number of free parameters for AIC-TEST(NO-BR-LEN): 30
+
+
+Model Parameters of Partition 0, Name: gag, Type of Data: DNA
+alpha: 0.938513
+invar: 0.310028
+Branch length scaler: 0.980581
+Tree-Length: 31.120034
+rate A <-> C: 1.000763
+rate A <-> G: 8.963896
+rate A <-> T: 1.154490
+rate C <-> G: 0.865021
+rate C <-> T: 9.337180
+rate G <-> T: 1.000000
+
+freq pi(A): 0.376003
+freq pi(C): 0.194137
+freq pi(G): 0.235820
+freq pi(T): 0.194041
+
+Model Parameters of Partition 1, Name: pol, Type of Data: DNA
+alpha: 0.953263
+invar: 0.325015
+Branch length scaler: 0.984883
+Tree-Length: 31.256548
+rate A <-> C: 1.162860
+rate A <-> G: 9.540457
+rate A <-> T: 1.134866
+rate C <-> G: 1.066872
+rate C <-> T: 10.265577
+rate G <-> T: 1.000000
+
+freq pi(A): 0.391254
+freq pi(C): 0.170151
+freq pi(G): 0.226801
+freq pi(T): 0.211794
+
+Model Parameters of Partition 2, Name: env, Type of Data: DNA
+alpha: 0.970225
+invar: 0.282998
+Branch length scaler: 1.994143
+Tree-Length: 63.286772
+rate A <-> C: 1.299337
+rate A <-> G: 10.605028
+rate A <-> T: 1.238248
+rate C <-> G: 1.138623
+rate C <-> T: 10.733766
+rate G <-> T: 1.000000
+
+freq pi(A): 0.359164
+freq pi(C): 0.174280
+freq pi(G): 0.229689
+freq pi(T): 0.236866
+

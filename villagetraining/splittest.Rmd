@@ -1,0 +1,18 @@
+---
+title: "Split test"
+output: html_document
+---
+
+Get true tree.
+
+Function to split at given depth.
+
+Get sequences.
+
+Split into chunks.
+
+Define MB model block.
+
+Generate directory and save separate chunks into it.
+
+Run each block.

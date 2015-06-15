@@ -1,0 +1,22 @@
+---
+title: "Team Cambridge (and Imperial)"
+author: "Simon Frost"
+date: "15/05/2015"
+output: revealjs::revealjs_presentation
+---
+
+# Our contributions
+
+- Metapopulation coalescent
+- Providing phylogenies for Erik's structured coalescent models
+
+# Tree reconstruction for village datasets
+
+- Phylogenetic reconstruction using BEAST and MrBayes suffered from poor mixing of the Markov chains
+- We used the training dataset for village to identify the best *fast* method for a point estimate of the tree
+
+# How to get a reliable topology?
+
+- 
+
+# How to get reliable branch lengths?

@@ -1,0 +1,70 @@
+
+
+This is ExaML version 3.0.11 released by Alexandros Stamatakis, Andre Aberer, and Alexey Kozlov in April 10 2014.
+
+
+Alignment has 4597 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+ExaML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by ExaML
+ML estimate of 25 per site rate categories
+
+Partition: 0
+Alignment Patterns: 945
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 1668
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1984
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+ExaML was called as follows:
+
+/usr/local/bin/examl -D -t RAxML_parsimonyTree.scA_gc_startingtree -m PSR -s scA_gc.binary -n scA_gc 
+
+
+Memory Saving Option: DISABLED
+
+Best rearrangement radius: 25
+ML search convergence criterion fast cycle 0->1 Relative Robinson-Foulds 0.141304
+ML search convergence criterion fast cycle 1->2 Relative Robinson-Foulds 0.092391
+ML search convergence criterion fast cycle 2->3 Relative Robinson-Foulds 0.016304
+ML search convergence criterion fast cycle 3->4 Relative Robinson-Foulds 0.027174
+ML search convergence criterion thorough cycle 0->1 Relative Robinson-Foulds 0.054348
+
+Likelihood of best tree: -240896.764472
+
+
+Overall Time for 1 Inference 567.794870
+
+Overall accumulated Time (in case of restarts): 567.794870
+
+Likelihood   : -240896.764472
+
+
+Model parameters written to:           /home/simon/Projects/pangea-round2/mrbayes/ExaML_modelFile.scA_gc
+Final tree written to:                 /home/simon/Projects/pangea-round2/mrbayes/ExaML_result.scA_gc
+Execution Log File written to:         /home/simon/Projects/pangea-round2/mrbayes/ExaML_log.scA_gc
+Execution information file written to: /home/simon/Projects/pangea-round2/mrbayes/ExaML_info.scA_gc

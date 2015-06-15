@@ -1,0 +1,8 @@
+Model selection results for subset: ee58eff1c1cc8fc24611d15e5f25178d
+Subset alignment stored here: ./analysis/phylofiles/ee58eff1c1cc8fc24611d15e5f25178d.phy
+This subset contains the following data_blocks: (env_pos1, env_pos3)
+Models are organised according to their BIC scores
+
+Model           | lNL             | AIC             | AICc            | BIC            
+GTR+I+G         | -321142.878497  | 642305.756994   | 642305.889444   | 642359.974752  
+GTR+G           | -322719.381616  | 645456.763232   | 645456.871535   | 645505.559214  

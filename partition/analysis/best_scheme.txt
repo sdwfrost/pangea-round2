@@ -1,0 +1,33 @@
+Settings used
+
+alignment         : ./vill.phy
+branchlengths     : linked
+models            : GTR+I+G, GTR+G
+model_selection   : bic
+search            : greedy
+
+
+Best partitioning scheme
+
+Scheme Name       : step_5
+Scheme lnL        : -911478.186071
+Scheme BIC        : 1840721.94791
+Number of params  : 2007
+Number of sites   : 6987
+Number of subsets : 4
+
+Subset | Best Model | Subset Partitions              | Subset Sites                   | Alignment                               
+1      | GTR+G      | gag_pos1, gag_pos2, pol_pos1, pol_pos2 | 1-1479\3, 2-1479\3, 1480-4479\3, 1481-4479\3 | ./analysis/phylofiles/933eb62e4f66efb22c2ac4a0a07b275a.phy
+2      | GTR+I+G    | gag_pos3, pol_pos3             | 3-1479\3, 1482-4479\3          | ./analysis/phylofiles/a21bc6c172e66a69af13860b71ce5a54.phy
+3      | GTR+I+G    | env_pos1, env_pos2             | 4480-6987\3, 4481-6987\3       | ./analysis/phylofiles/5f995494188411a146004b5ce077d9da.phy
+4      | GTR+I+G    | env_pos3                       | 4482-6987\3                    | ./analysis/phylofiles/493e0f8740eb41f3596f7f4b04dcab1b.phy
+
+
+Scheme Description in PartitionFinder format
+Scheme_step_5 = (gag_pos1, gag_pos2, pol_pos1, pol_pos2) (gag_pos3, pol_pos3) (env_pos1, env_pos2) (env_pos3);
+
+RaxML-style partition definitions
+DNA, p1 = 1-1479\3, 2-1479\3, 1480-4479\3, 1481-4479\3
+DNA, p2 = 3-1479\3, 1482-4479\3
+DNA, p3 = 4480-6987\3, 4481-6987\3
+DNA, p4 = 4482-6987\3

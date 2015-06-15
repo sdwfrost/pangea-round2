@@ -1,0 +1,11 @@
+IQ-TREE multicore version 1.2.3 for Linux 64-bit built Apr  8 2015
+Copyright (c) 2011-2014 Nguyen Lam Tung, Olga Chernomor, Arndt von Haeseler and Bui Quang Minh.
+
+Host:    simon-ThinkPad-W520 (AVX, 3 GB RAM)
+Command: iqtree-omp -nt 2 -s /tmp/RtmpGQ1eun/file20093c3ba9cc.phy -spp regional_partition.nex
+Seed:    901489 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri May  1 11:48:41 2015
+Kernel:  AVX - 2 threads (8 CPU cores detected)
+
+Reading partition model file regional_partition.nex ...
+ERROR: Cannot read file regional_partition.nex

@@ -1,0 +1,223 @@
+
+Operator analysis
+Operator                                          Tuning   Count      Time     Time/Op  Pr(accept) 
+scale(ac)                                         0.675   494        4174     8.45     0.1053      
+scale(ag)                                         0.72    504        4223     8.38     0.0675      
+scale(at)                                         0.764   517        4523     8.75     0.1412      
+scale(cg)                                         0.654   496        4141     8.35     0.1452      
+scale(gt)                                         0.755   551        4605     8.36     0.1688      
+frequencies                                       0.016   531        4603     8.67     0.1111      
+scale(alpha)                                      0.826   511        4238     8.29     0.1409      
+scale(pInv)                                       0.868   519        4267     8.22     0.1599      
+scale(ucld.mean)                                  0.906   515        3729     7.24     0.0757      
+scale(ucld.stdev)                                 0.504   515        4227     8.21     0.0757      
+subtreeSlide(cluster1.treeModel)                  14.721  76804      41944    0.55     0.4631      
+Narrow Exchange(cluster1.treeModel)                       77134      32762    0.42     0.0775      
+Wide Exchange(cluster1.treeModel)                         15113      4882     0.32     0.0054      
+wilsonBalding(cluster1.treeModel)                         15249      7752     0.51     0.0026      
+scale(cluster1.treeModel.rootHeight)              0.784   15151      4875     0.32     0.166       
+uniform(nodeHeights(cluster1.treeModel))                  153783     87826    0.57     0.1733      
+subtreeSlide(cluster2.treeModel)                  13.384  77316      32965    0.43     0.4838      
+Narrow Exchange(cluster2.treeModel)                       76984      23864    0.31     0.0196      
+Wide Exchange(cluster2.treeModel)                         15526      3842     0.25     0.001       
+wilsonBalding(cluster2.treeModel)                         15668      5835     0.37     0.0007      
+scale(cluster2.treeModel.rootHeight)              0.764   15081      4300     0.29     0.2168      
+uniform(nodeHeights(cluster2.treeModel))                  153380     68271    0.45     0.1949      
+subtreeSlide(cluster3.treeModel)                  16.124  77039      24524    0.32     0.4933      
+Narrow Exchange(cluster3.treeModel)                       77207      19361    0.25     0.0269      
+Wide Exchange(cluster3.treeModel)                         15176      2584     0.17     0.0025      
+wilsonBalding(cluster3.treeModel)                         15213      3787     0.25     0.0024      
+scale(cluster3.treeModel.rootHeight)              0.844   15558      3040     0.2      0.2233      
+uniform(nodeHeights(cluster3.treeModel))                  153557     50288    0.33     0.1731      
+subtreeSlide(cluster4.treeModel)                  15.921  76658      35513    0.46     0.4835      
+Narrow Exchange(cluster4.treeModel)                       76804      27987    0.36     0.0101      
+Wide Exchange(cluster4.treeModel)                         15430      4167     0.27     0.0009      
+wilsonBalding(cluster4.treeModel)                         15364      6452     0.42     0.001       
+scale(cluster4.treeModel.rootHeight)              0.858   15480      4388     0.28     0.2301      
+uniform(nodeHeights(cluster4.treeModel))                  153722     73145    0.48     0.1615      
+subtreeSlide(cluster5.treeModel)                  16.389  76667      38735    0.51     0.479       
+Narrow Exchange(cluster5.treeModel)                       77387      22799    0.29     0.0734      
+Wide Exchange(cluster5.treeModel)                         15584      4459     0.29     0.0067      
+wilsonBalding(cluster5.treeModel)                         15590      6814     0.44     0.0057      
+scale(cluster5.treeModel.rootHeight)              0.848   15436      4631     0.3      0.2383      
+uniform(nodeHeights(cluster5.treeModel))                  153767     80386    0.52     0.1756      
+subtreeSlide(cluster6.treeModel)                  13.244  76826      24544    0.32     0.4985      
+Narrow Exchange(cluster6.treeModel)                       76848      18681    0.24     0.0941      
+Wide Exchange(cluster6.treeModel)                         15364      2595     0.17     0.0102      
+wilsonBalding(cluster6.treeModel)                         15483      3740     0.24     0.0043      
+scale(cluster6.treeModel.rootHeight)              0.809   15473      3009     0.19     0.1866      
+uniform(nodeHeights(cluster6.treeModel))                  153516     49731    0.32     0.2183      
+subtreeSlide(cluster7.treeModel)                  14.754  76721      29219    0.38     0.4821      
+Narrow Exchange(cluster7.treeModel)                       76843      24255    0.32     0.1523      
+Wide Exchange(cluster7.treeModel)                         15572      3351     0.22     0.0139      
+wilsonBalding(cluster7.treeModel)                         15318      4737     0.31     0.005       
+scale(cluster7.treeModel.rootHeight)              0.792   15411      3752     0.24     0.1941      
+uniform(nodeHeights(cluster7.treeModel))                  153405     62062    0.4      0.2389      
+subtreeSlide(cluster8.treeModel)                  16.394  77447      27226    0.35     0.4926      
+Narrow Exchange(cluster8.treeModel)                       77057      18793    0.24     0.0323      
+Wide Exchange(cluster8.treeModel)                         15533      2944     0.19     0.0032      
+wilsonBalding(cluster8.treeModel)                         15438      4175     0.27     0.0027      
+scale(cluster8.treeModel.rootHeight)              0.779   15376      3784     0.25     0.2195      
+uniform(nodeHeights(cluster8.treeModel))                  153822     55193    0.36     0.1734      
+subtreeSlide(cluster9.treeModel)                  12.236  76697      34879    0.45     0.4747      
+Narrow Exchange(cluster9.treeModel)                       77164      23826    0.31     0.0821      
+Wide Exchange(cluster9.treeModel)                         15264      4002     0.26     0.0057      
+wilsonBalding(cluster9.treeModel)                         15352      6355     0.41     0.004       
+scale(cluster9.treeModel.rootHeight)              0.816   15272      4083     0.27     0.2198      
+uniform(nodeHeights(cluster9.treeModel))                  153338     73303    0.48     0.1873      
+subtreeSlide(cluster10.treeModel)                 14.959  76817      28375    0.37     0.4827      
+Narrow Exchange(cluster10.treeModel)                      77528      21252    0.27     0.0493      
+Wide Exchange(cluster10.treeModel)                        15272      3234     0.21     0.0036      
+wilsonBalding(cluster10.treeModel)                        15259      4874     0.32     0.0009      
+scale(cluster10.treeModel.rootHeight)             0.845   15390      4026     0.26     0.2325      
+uniform(nodeHeights(cluster10.treeModel))                 154471     59395    0.38     0.1347      
+subtreeSlide(cluster11.treeModel)                 13.153  77202      33956    0.44     0.4654      
+Narrow Exchange(cluster11.treeModel)                      77552      24581    0.32     0.0264      
+Wide Exchange(cluster11.treeModel)                        15219      3882     0.26     0.0023      
+wilsonBalding(cluster11.treeModel)                        15343      6126     0.4      0.0007      
+scale(cluster11.treeModel.rootHeight)             0.78    15367      5066     0.33     0.1887      
+uniform(nodeHeights(cluster11.treeModel))                 154133     70322    0.46     0.1807      
+subtreeSlide(cluster12.treeModel)                 17.704  77323      25875    0.33     0.5025      
+Narrow Exchange(cluster12.treeModel)                      77099      16866    0.22     0.0098      
+Wide Exchange(cluster12.treeModel)                        15461      2791     0.18     0.001       
+wilsonBalding(cluster12.treeModel)                        15553      3982     0.26     0.0003      
+scale(cluster12.treeModel.rootHeight)             0.819   15413      3618     0.23     0.2171      
+uniform(nodeHeights(cluster12.treeModel))                 154657     52709    0.34     0.1692      
+subtreeSlide(cluster13.treeModel)                 13.368  76674      27663    0.36     0.4859      
+Narrow Exchange(cluster13.treeModel)                      76534      23479    0.31     0.0956      
+Wide Exchange(cluster13.treeModel)                        15212      3049     0.2      0.0104      
+wilsonBalding(cluster13.treeModel)                        15259      4506     0.3      0.0052      
+scale(cluster13.treeModel.rootHeight)             0.798   15460      3489     0.23     0.1966      
+uniform(nodeHeights(cluster13.treeModel))                 154375     59514    0.39     0.2446      
+subtreeSlide(cluster14.treeModel)                 13.823  77340      25879    0.33     0.4768      
+Narrow Exchange(cluster14.treeModel)                      77453      20616    0.27     0.1058      
+Wide Exchange(cluster14.treeModel)                        15466      2747     0.18     0.0108      
+wilsonBalding(cluster14.treeModel)                        15178      3992     0.26     0.002       
+scale(cluster14.treeModel.rootHeight)             0.819   15334      3725     0.24     0.2142      
+uniform(nodeHeights(cluster14.treeModel))                 154728     54580    0.35     0.1596      
+subtreeSlide(cluster15.treeModel)                 16.143  77222      27069    0.35     0.4887      
+Narrow Exchange(cluster15.treeModel)                      76359      18759    0.25     0.0902      
+Wide Exchange(cluster15.treeModel)                        15233      2864     0.19     0.0121      
+wilsonBalding(cluster15.treeModel)                        15258      4272     0.28     0.0031      
+scale(cluster15.treeModel.rootHeight)             0.787   15408      3664     0.24     0.1694      
+uniform(nodeHeights(cluster15.treeModel))                 153861     56721    0.37     0.1924      
+subtreeSlide(cluster16.treeModel)                 16.404  76965      25836    0.34     0.4903      
+Narrow Exchange(cluster16.treeModel)                      77208      20435    0.26     0.0652      
+Wide Exchange(cluster16.treeModel)                        15220      2758     0.18     0.0073      
+wilsonBalding(cluster16.treeModel)                        15288      3947     0.26     0.0033      
+scale(cluster16.treeModel.rootHeight)             0.797   15498      3563     0.23     0.1834      
+uniform(nodeHeights(cluster16.treeModel))                 153594     53616    0.35     0.1492      
+subtreeSlide(cluster17.treeModel)                 12.654  77100      97843    1.27     0.4494      
+Narrow Exchange(cluster17.treeModel)                      77198      77266    1.0      0.0329      
+Wide Exchange(cluster17.treeModel)                        15085      12629    0.84     0.0008      
+wilsonBalding(cluster17.treeModel)                        15453      22328    1.44     0.0008      
+scale(cluster17.treeModel.rootHeight)             0.876   15633      9873     0.63     0.209       
+uniform(nodeHeights(cluster17.treeModel))                 153655     200216   1.3      0.1678      
+subtreeSlide(cluster18.treeModel)                 13.012  77480      38994    0.5      0.4731      
+Narrow Exchange(cluster18.treeModel)                      76748      30910    0.4      0.0691      
+Wide Exchange(cluster18.treeModel)                        15239      4426     0.29     0.0043      
+wilsonBalding(cluster18.treeModel)                        15437      6991     0.45     0.0038      
+scale(cluster18.treeModel.rootHeight)             0.773   15254      4444     0.29     0.1905      
+uniform(nodeHeights(cluster18.treeModel))                 154165     81186    0.53     0.2182      
+subtreeSlide(cluster19.treeModel)                 11.437  76631      30915    0.4      0.4682      
+Narrow Exchange(cluster19.treeModel)                      76874      25745    0.33     0.0606      
+Wide Exchange(cluster19.treeModel)                        15531      3631     0.23     0.0039      
+wilsonBalding(cluster19.treeModel)                        15237      5709     0.37     0.0014      
+scale(cluster19.treeModel.rootHeight)             0.776   15450      4617     0.3      0.1613      
+uniform(nodeHeights(cluster19.treeModel))                 153610     66668    0.43     0.1862      
+subtreeSlide(cluster20.treeModel)                 12.9    76724      36868    0.48     0.4858      
+Narrow Exchange(cluster20.treeModel)                      76814      31795    0.41     0.1047      
+Wide Exchange(cluster20.treeModel)                        15096      4217     0.28     0.007       
+wilsonBalding(cluster20.treeModel)                        15236      6654     0.44     0.002       
+scale(cluster20.treeModel.rootHeight)             0.85    15348      4628     0.3      0.2484      
+uniform(nodeHeights(cluster20.treeModel))                 153826     77561    0.5      0.2121      
+subtreeSlide(cluster21.treeModel)                 15.309  76994      58569    0.76     0.4672      
+Narrow Exchange(cluster21.treeModel)                      77310      41599    0.54     0.0281      
+Wide Exchange(cluster21.treeModel)                        15268      7223     0.47     0.0016      
+wilsonBalding(cluster21.treeModel)                        15567      11768    0.76     0.0012      
+scale(cluster21.treeModel.rootHeight)             0.818   15448      6065     0.39     0.1732      
+uniform(nodeHeights(cluster21.treeModel))                 153983     120710   0.78     0.1655      
+subtreeSlide(cluster22.treeModel)                 13.638  76731      46828    0.61     0.484       
+Narrow Exchange(cluster22.treeModel)                      77144      35175    0.46     0.05        
+Wide Exchange(cluster22.treeModel)                        15392      5455     0.35     0.0032      
+wilsonBalding(cluster22.treeModel)                        15403      8903     0.58     0.0023      
+scale(cluster22.treeModel.rootHeight)             0.849   15337      5768     0.38     0.2298      
+uniform(nodeHeights(cluster22.treeModel))                 154046     97731    0.63     0.1774      
+subtreeSlide(cluster23.treeModel)                 11.593  76764      23020    0.3      0.4651      
+Narrow Exchange(cluster23.treeModel)                      77230      19114    0.25     0.169       
+Wide Exchange(cluster23.treeModel)                        15504      2503     0.16     0.0181      
+wilsonBalding(cluster23.treeModel)                        15477      3491     0.23     0.0025      
+scale(cluster23.treeModel.rootHeight)             0.799   15288      3251     0.21     0.1733      
+uniform(nodeHeights(cluster23.treeModel))                 153514     47763    0.31     0.1508      
+scale(exponential.popSize)                        0.691   15452      6174     0.4      0.2449      
+exponential.growthRate                            0.125   15421      6235     0.4      0.0042      
+up:ucld.mean down:nodeHeights(cluster1.treeModel) 0.956   15212      115653   7.6      0.214       
+swapOperator(cluster1.branchRates.categories)             50853      31451    0.62     0.2448      
+uniformInteger(cluster1.branchRates.categories)           51218      27282    0.53     0.3603      
+up:ucld.mean down:nodeHeights(cluster2.treeModel) 0.956   15338      116994   7.63     0.2134      
+swapOperator(cluster2.branchRates.categories)             51028      24041    0.47     0.2885      
+uniformInteger(cluster2.branchRates.categories)           51490      20934    0.41     0.3983      
+up:ucld.mean down:nodeHeights(cluster3.treeModel) 0.957   15527      118152   7.61     0.2186      
+swapOperator(cluster3.branchRates.categories)             50876      17399    0.34     0.2648      
+uniformInteger(cluster3.branchRates.categories)           51684      15895    0.31     0.38        
+up:ucld.mean down:nodeHeights(cluster4.treeModel) 0.956   15390      117319   7.62     0.2093      
+swapOperator(cluster4.branchRates.categories)             51605      27007    0.52     0.2708      
+uniformInteger(cluster4.branchRates.categories)           51376      23827    0.46     0.3741      
+up:ucld.mean down:nodeHeights(cluster5.treeModel) 0.954   15343      114730   7.48     0.1856      
+swapOperator(cluster5.branchRates.categories)             51221      28700    0.56     0.201       
+uniformInteger(cluster5.branchRates.categories)           51623      25106    0.49     0.323       
+up:ucld.mean down:nodeHeights(cluster6.treeModel) 0.956   15238      116182   7.62     0.2126      
+swapOperator(cluster6.branchRates.categories)             51244      16807    0.33     0.2866      
+uniformInteger(cluster6.branchRates.categories)           51190      15471    0.3      0.4065      
+up:ucld.mean down:nodeHeights(cluster7.treeModel) 0.955   15348      116167   7.57     0.2039      
+swapOperator(cluster7.branchRates.categories)             51262      21552    0.42     0.2973      
+uniformInteger(cluster7.branchRates.categories)           50582      18899    0.37     0.4014      
+up:ucld.mean down:nodeHeights(cluster8.treeModel) 0.957   15257      116421   7.63     0.2177      
+swapOperator(cluster8.branchRates.categories)             51353      18729    0.36     0.2912      
+uniformInteger(cluster8.branchRates.categories)           51234      16848    0.33     0.3774      
+up:ucld.mean down:nodeHeights(cluster9.treeModel) 0.955   15411      117382   7.62     0.2112      
+swapOperator(cluster9.branchRates.categories)             51580      25930    0.5      0.3097      
+uniformInteger(cluster9.branchRates.categories)           51369      22686    0.44     0.4229      
+up:ucld.mean down:nodeHeights(cluster10.treeModel) 0.956   15407      116583   7.57     0.2088      
+swapOperator(cluster10.branchRates.categories)            51394      20275    0.39     0.2246      
+uniformInteger(cluster10.branchRates.categories)          51426      18286    0.36     0.3444      
+up:ucld.mean down:nodeHeights(cluster11.treeModel) 0.956   15350      118731   7.73     0.2143      
+swapOperator(cluster11.branchRates.categories)            51083      24454    0.48     0.2444      
+uniformInteger(cluster11.branchRates.categories)          51237      21628    0.42     0.3632      
+up:ucld.mean down:nodeHeights(cluster12.treeModel) 0.954   15267      114434   7.5      0.1976      
+swapOperator(cluster12.branchRates.categories)            51272      17737    0.35     0.265       
+uniformInteger(cluster12.branchRates.categories)          51340      16091    0.31     0.3504      
+up:ucld.mean down:nodeHeights(cluster13.treeModel) 0.953   15240      114763   7.53     0.1915      
+swapOperator(cluster13.branchRates.categories)            51204      20002    0.39     0.2616      
+uniformInteger(cluster13.branchRates.categories)          51161      18051    0.35     0.3988      
+up:ucld.mean down:nodeHeights(cluster14.treeModel) 0.959   15604      119766   7.68     0.2215      
+swapOperator(cluster14.branchRates.categories)            51268      18206    0.36     0.2425      
+uniformInteger(cluster14.branchRates.categories)          51336      16664    0.32     0.3829      
+up:ucld.mean down:nodeHeights(cluster15.treeModel) 0.956   15197      115887   7.63     0.2129      
+swapOperator(cluster15.branchRates.categories)            51257      19254    0.38     0.2497      
+uniformInteger(cluster15.branchRates.categories)          51299      17338    0.34     0.3847      
+up:ucld.mean down:nodeHeights(cluster16.treeModel) 0.953   15436      115855   7.51     0.1903      
+swapOperator(cluster16.branchRates.categories)            51139      18110    0.35     0.2374      
+uniformInteger(cluster16.branchRates.categories)          51361      16546    0.32     0.3413      
+up:ucld.mean down:nodeHeights(cluster17.treeModel) 0.957   15391      118609   7.71     0.21        
+swapOperator(cluster17.branchRates.categories)            51409      83083    1.62     0.2421      
+uniformInteger(cluster17.branchRates.categories)          51279      64843    1.26     0.3546      
+up:ucld.mean down:nodeHeights(cluster18.treeModel) 0.956   15399      117717   7.64     0.213       
+swapOperator(cluster18.branchRates.categories)            51457      29108    0.57     0.2668      
+uniformInteger(cluster18.branchRates.categories)          51265      25264    0.49     0.3891      
+up:ucld.mean down:nodeHeights(cluster19.treeModel) 0.957   15309      116825   7.63     0.2201      
+swapOperator(cluster19.branchRates.categories)            51490      23667    0.46     0.261       
+uniformInteger(cluster19.branchRates.categories)          51298      20581    0.4      0.4101      
+up:ucld.mean down:nodeHeights(cluster20.treeModel) 0.954   15330      118009   7.7      0.1968      
+swapOperator(cluster20.branchRates.categories)            51140      27437    0.54     0.2987      
+uniformInteger(cluster20.branchRates.categories)          51251      23794    0.46     0.4134      
+up:ucld.mean down:nodeHeights(cluster21.treeModel) 0.957   15172      116107   7.65     0.2149      
+swapOperator(cluster21.branchRates.categories)            51011      45178    0.89     0.2247      
+uniformInteger(cluster21.branchRates.categories)          51206      37523    0.73     0.3222      
+up:ucld.mean down:nodeHeights(cluster22.treeModel) 0.956   15403      117931   7.66     0.211       
+swapOperator(cluster22.branchRates.categories)            51510      34835    0.68     0.2742      
+uniformInteger(cluster22.branchRates.categories)          51231      30056    0.59     0.3787      
+up:ucld.mean down:nodeHeights(cluster23.treeModel) 0.956   15265      116389   7.62     0.2126      
+swapOperator(cluster23.branchRates.categories)            51455      16240    0.32     0.2891      
+uniformInteger(cluster23.branchRates.categories)          51795      14968    0.29     0.3901      
+

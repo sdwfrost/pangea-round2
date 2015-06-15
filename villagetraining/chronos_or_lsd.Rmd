@@ -1,0 +1,114 @@
+---
+title: "Chronos or LSD"
+author: "Simon Frost"
+date: "09/05/2015"
+output: html_document
+---
+
+```{r}
+library(ape)
+library(magrittr)
+library(phangorn)
+library(rPython)
+```
+
+
+Take ExaML tree.
+
+```{r}
+exatree <- read.tree("ExaML_result.vill")
+exatree
+```
+
+```{r}
+td <- read.table("vill.td",skip=1,sep=" ")
+names(td) <- c("id","td")
+newid1 <- strsplit(as.character(td$id),"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+newid2 <- strsplit(as.character(td$id),"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+td$newid <- paste(newid1,newid2,sep="_")
+```
+
+```{r}
+tl <- exatree$tip.label
+idx <- match(tl,td$newid)
+tr <- exatree
+tr$tip.label <- td$id[idx]
+tr <- unroot(tr)
+#write.tree(tr,"Examl_result_renamed.vill")
+```
+
+Now run LSD.
+
+```{r,eval=FALSE}
+lsd.cmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v","Examl_result_renamed.vill","vill.td",paste(10),6987)
+lsd <- system(lsd.cmd,intern=TRUE)
+```
+
+Now load in trees.
+
+```{r}
+truetree <- read.nexus("Vill_99_Apr15/Vill_99_Apr15.nex")
+truetree.labels <- toupper(truetree$tip.label)
+truetree$tip.label <- truetree.labels
+truetreen <- truetree
+truetreen$edge.length <- truetreen$edge.length/sum(truetreen$edge.length)
+```
+
+```{r}
+lsdtree <- read.tree("Examl_result_renamed_result_newick_date.txt")
+chronostree <- read.tree("ExaML_result_renamed.vill.chronos")
+```
+
+```{r}
+treedist(lsdtree,truetree)
+treedist(chronostree,truetree)
+```
+
+Compare pairwise distances.
+
+```{r}
+truetree.d <- cophenetic.phylo(truetree)
+truetree.ltri <- truetree.d[lower.tri(truetree.d)]
+lsdtree.d <- cophenetic.phylo(lsdtree)
+chronostree.d <- cophenetic.phylo(chronostree)
+```
+
+```{r}
+ids <- row.names(truetree.d)
+idx <- match(ids,row.names(lsdtree.d))
+lsdtree.d2 <- lsdtree.d[idx,idx]
+lsdtree.d2.ltri <- lsdtree.d2[lower.tri(lsdtree.d2)]
+idx <- match(ids,row.names(chronostree.d))
+chronostree.d2 <- chronostree.d[idx,idx]
+chronostree.d2.ltri <- chronostree.d2[lower.tri(chronostree.d2)]
+```
+
+```{r}
+summary(lm(lsdtree.d2.ltri~truetree.ltri))
+summary(lm(chronostree.d2.ltri~truetree.ltri))
+#plot(lsdtree.d2.ltri~truetree.ltri)
+
+```
+
+Save trees to file.
+
+```{r}
+treelist <- c(truetree,lsdtree,chronostree)
+#write.tree(treelist,"timetrees.nwk")
+```
+
+Now compare with Art's phylo tree kernel.
+
+```{r,eval=FALSE}
+python.load("phyloK2.py")
+python.exec("pk=PhyloKernel()")
+python.exec("fn=open('timetrees.nwk','r')")
+python.exec("pk.load_trees_from_file(fn)")
+python.get("pk.ntrees")
+python.exec("fn.close()")
+python.exec("pk.compute_matrix()")
+kmat <- do.call(rbind,python.get("pk.kmat.tolist()"))
+dm <- diag(1./sqrt(diag(kmat)))
+kmat.norm <- dm %*% kmat %*% dm
+kmat.norm
+```

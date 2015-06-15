@@ -1,0 +1,27 @@
+Pattern compression: ON
+
+
+Your alignment has 789 unique patterns
+
+
+Under CAT the memory required by ExaML for storing CLVs and tip vectors will be
+260370 bytes
+254 kiloBytes
+0 MegaBytes
+0 GigaBytes
+
+
+Under GAMMA the memory required by ExaML for storing CLVs and tip vectors will be
+1017810 bytes
+993 kiloBytes
+0 MegaBytes
+0 GigaBytes
+
+Please note that, these are just the memory requirements for doing likelihood calculations!
+To be on the safe side, we recommend that you execute ExaML on a system with twice that memory.
+
+
+Binary and compressed alignment file written to file file20096a06a20a.binary
+
+Parsing completed, exiting now ... 
+

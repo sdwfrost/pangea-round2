@@ -1,0 +1,14 @@
+#nexus
+begin sets;
+	charset gag1 = 1-1479\3;
+	charset gag2 = 2-1479\3;
+	charset gag3 = 3-1479\3;
+	charset pol1 = 1480-4479\3;
+	charset pol2 = 1481-4479\3;
+	charset pol3 = 1482-4479\3;
+	charset env1 = 4480-6987\3;
+	charset env2 = 4481-6987\3;
+	charset env3 = 4482-6987\3;
+	charpartition mine = GTR+R[4]:gag1, GTR+R[4]:gag2, GTR+R[4]:gag3, GTR+R[4]:pol1, GTR+R[4]:pol2, GTR+R[4]:pol3, GTR+R[4]:env1, GTR+R[4]:env2, GTR+R[4]:env3;
+end;
+

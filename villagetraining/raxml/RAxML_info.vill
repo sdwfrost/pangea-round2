@@ -1,0 +1,92 @@
+
+You are using a proportion of Invariable sites estimate, although I don't
+like it. The likelihood epsilon "-f e" will be automatically lowered to 0.001
+to avoid unfavorable effects caused by simultaneous optimization of alpha and P-Invar
+
+
+This is RAxML version 8.1.20 released by Alexandros Stamatakis on April 18 2015.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+Alignment has 4835 distinct alignment patterns
+
+Found 0 invariant alignment patterns that correspond to 0 columns 
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+RAxML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+Executing 1 inferences on the original alignment using 1 distinct randomized MP trees
+
+All free model parameters will be estimated by RAxML
+GAMMA+P-Invar model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA+P-Invar Model parameters will be estimated up to an accuracy of 0.0010000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 1017
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2017
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1801
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+raxmlHPC-PTHREADS-SSE3 -s vill.phy -m GTRGAMMAI -n vill -T 24 -p 1 -q villages_partition 
+
+
+Partition: 0 with name: gag
+Base frequencies: 0.376 0.194 0.236 0.194 
+
+Partition: 1 with name: pol
+Base frequencies: 0.391 0.170 0.227 0.212 
+
+Partition: 2 with name: env
+Base frequencies: 0.359 0.174 0.230 0.237 
+
+Inference[0]: Time 2508.736646 GAMMA+P-Invar-based likelihood -916582.383387, best rearrangement setting 5
+alpha[0]: 0.592114 invar[0]: 0.311454 rates[0] ac ag at cg ct gt: 1.224290 10.805823 1.440542 1.054655 11.488298 1.000000 alpha[1]: 0.624218 invar[1]: 0.327043 rates[1] ac ag at cg ct gt: 1.314052 10.666786 1.291168 1.209582 11.680823 1.000000 alpha[2]: 0.973871 invar[2]: 0.283004 rates[2] ac ag at cg ct gt: 1.034168 8.446862 0.963816 0.886154 8.543861 1.000000 
+
+
+Conducting final model optimizations on all 1 trees under GAMMA-based models ....
+
+Inference[0] final GAMMA-based Likelihood: -916571.139532 tree written to file /data/sdf22/Projects/pangea-round2/RAxML_result.vill
+
+
+Starting final GAMMA-based thorough Optimization on tree 0 likelihood -916571.139532 .... 
+
+Final GAMMA-based Score of best tree -916571.139532
+
+Program execution info written to /data/sdf22/Projects/pangea-round2/RAxML_info.vill
+Best-scoring ML tree written to: /data/sdf22/Projects/pangea-round2/RAxML_bestTree.vill
+
+Overall execution time: 4020.542021 secs or 1.116817 hours or 0.046534 days
+

@@ -1,0 +1,89 @@
+
+
+This is RAxML version 8.1.20 released by Alexandros Stamatakis on April 18 2015.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+Alignment has 3964 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+RAxML rapid hill-climbing mode
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+Executing 1 inferences on the original alignment using 1 distinct randomized MP trees
+
+All free model parameters will be estimated by RAxML
+ML estimate of 25 per site rate categories
+
+Likelihood of final tree will be evaluated and optimized under GAMMA
+
+GAMMA Model parameters will be estimated up to an accuracy of 0.1000000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 797
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 1590
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1577
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+raxmlHPC-PTHREADS-SSE3 -s village_subset.fas -m GTRCATX -n village_subset -T 4 -p 1 -q villages_partition 
+
+
+Partition: 0 with name: gag
+Base frequencies: 0.376 0.195 0.236 0.193 
+
+Partition: 1 with name: pol
+Base frequencies: 0.391 0.170 0.227 0.212 
+
+Partition: 2 with name: env
+Base frequencies: 0.359 0.174 0.230 0.237 
+
+Inference[0]: Time 93.898856 CAT-based likelihood -153869.553721, best rearrangement setting 5
+alpha[0]: 1.000000 rates[0] ac ag at cg ct gt: 0.801878 7.054788 1.075164 0.517951 7.911302 1.000000 alpha[1]: 1.000000 rates[1] ac ag at cg ct gt: 0.905693 6.990281 0.833009 0.688660 8.667228 1.000000 alpha[2]: 1.000000 rates[2] ac ag at cg ct gt: 1.422179 10.600023 1.316791 1.155434 11.275866 1.000000 
+
+
+Conducting final model optimizations on all 1 trees under GAMMA-based models ....
+
+Inference[0] final GAMMA-based Likelihood: -163427.705743 tree written to file /home/simon/Projects/pangea-round2/villagetraining/RAxML_result.village_subset
+
+
+Starting final GAMMA-based thorough Optimization on tree 0 likelihood -163427.705743 .... 
+
+Final GAMMA-based Score of best tree -163427.502363
+
+Program execution info written to /home/simon/Projects/pangea-round2/villagetraining/RAxML_info.village_subset
+Best-scoring ML tree written to: /home/simon/Projects/pangea-round2/villagetraining/RAxML_bestTree.village_subset
+
+Overall execution time: 250.284134 secs or 0.069523 hours or 0.002897 days
+

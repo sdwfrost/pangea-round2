@@ -1,0 +1,8 @@
+Model selection results for subset: 207e5cdac7f67c2fdd6023031b56cd22
+Subset alignment stored here: ./analysis/phylofiles/207e5cdac7f67c2fdd6023031b56cd22.phy
+This subset contains the following data_blocks: (pol_pos1, pol_pos3)
+Models are organised according to their BIC scores
+
+Model           | lNL             | AIC             | AICc            | BIC            
+GTR+G           | -229643.869494  | 459305.738988   | 459305.82944    | 459356.14711   
+GTR+I+G         | -229754.681278  | 459529.362556   | 459529.473164   | 459585.371581  

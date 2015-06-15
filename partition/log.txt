@@ -1,0 +1,124 @@
+INFO     | 2015-05-07 15:59:45,038 | config     | Loading configuration at './partition_finder.cfg'
+INFO     | 2015-05-07 15:59:45,044 | config     | Setting 'alignment' to 'vill.phy'
+INFO     | 2015-05-07 15:59:45,044 | config     | Setting 'branchlengths' to 'linked'
+INFO     | 2015-05-07 15:59:45,045 | parser     | Setting 'models' to 'raxml'
+INFO     | 2015-05-07 15:59:45,045 | parser     | The models included in this analysis are: GTR+I+G, GTR+G
+INFO     | 2015-05-07 15:59:45,045 | parser     | Setting datatype to 'DNA'
+INFO     | 2015-05-07 15:59:45,045 | config     | Setting 'model_selection' to 'bic'
+INFO     | 2015-05-07 15:59:45,051 | config     | Setting 'search' to 'greedy'
+INFO     | 2015-05-07 15:59:45,051 | config     | ------------------------ BEGINNING NEW RUN -------------------------------
+INFO     | 2015-05-07 15:59:45,051 | config     | Looking for alignment file './vill.phy'...
+INFO     | 2015-05-07 15:59:45,051 | config     | Looking for tree file './vill_scaled.tre'...
+INFO     | 2015-05-07 15:59:45,051 | analysis   | Beginning Analysis
+INFO     | 2015-05-07 15:59:45,051 | analysis   | Removing Schemes in './analysis/schemes' (they will be recalculated from existing subset data)
+INFO     | 2015-05-07 15:59:45,052 | config     | Checking previously run configuration data...
+INFO     | 2015-05-07 15:59:45,059 | alignment  | Reading alignment file './vill.phy'
+ERROR    | 2015-05-07 15:59:45,123 | alignment  | Error in Alignment Parsing:Expected end of line (at char 39), (line:2, col:29)
+ERROR    | 2015-05-07 15:59:45,123 | alignment  | A common cause of this error is having whitespace, i.e. spaces or tabs, in the species names. Please check this and remove all whitespace from species names, or replace them with e.g. underscores
+ERROR    | 2015-05-07 15:59:45,123 | main       | Failed to run. See previous errors.
+INFO     | 2015-05-08 11:37:11,362 | config     | Loading configuration at './partition_finder.cfg'
+INFO     | 2015-05-08 11:37:11,368 | config     | Setting 'alignment' to 'vill.phy'
+INFO     | 2015-05-08 11:37:11,368 | config     | Setting 'branchlengths' to 'linked'
+INFO     | 2015-05-08 11:37:11,368 | parser     | Setting 'models' to 'raxml'
+INFO     | 2015-05-08 11:37:11,368 | parser     | The models included in this analysis are: GTR+I+G, GTR+G
+INFO     | 2015-05-08 11:37:11,368 | parser     | Setting datatype to 'DNA'
+INFO     | 2015-05-08 11:37:11,369 | config     | Setting 'model_selection' to 'bic'
+INFO     | 2015-05-08 11:37:11,374 | config     | Setting 'search' to 'greedy'
+INFO     | 2015-05-08 11:37:11,374 | config     | ------------------------ BEGINNING NEW RUN -------------------------------
+INFO     | 2015-05-08 11:37:11,374 | config     | Looking for alignment file './vill.phy'...
+INFO     | 2015-05-08 11:37:11,374 | config     | Looking for tree file './vill_scaled.tre'...
+INFO     | 2015-05-08 11:37:11,374 | analysis   | Beginning Analysis
+INFO     | 2015-05-08 11:37:11,374 | analysis   | Removing Schemes in './analysis/schemes' (they will be recalculated from existing subset data)
+INFO     | 2015-05-08 11:37:11,375 | config     | Checking previously run configuration data...
+INFO     | 2015-05-08 11:37:11,381 | alignment  | Reading alignment file './vill.phy'
+INFO     | 2015-05-08 11:37:12,003 | analysis   | No starting tree file found.
+INFO     | 2015-05-08 11:37:12,003 | analysis   | Using user supplied topology at ./vill_scaled.tre
+INFO     | 2015-05-08 11:37:12,012 | raxml      | Estimating GTR+G branch lengths on tree using RAxML
+INFO     | 2015-05-08 11:55:09,457 | raxml      | Branchlength estimation finished
+INFO     | 2015-05-08 11:55:09,458 | analysis   | Starting tree with branch lengths is here: ./analysis/start_tree/RAxML_result.BLTREE
+INFO     | 2015-05-08 11:55:09,458 | method     | Performing greedy analysis
+INFO     | 2015-05-08 11:55:09,458 | progress   | PartitionFinder will have to analyse 73 subsets to complete this analysis
+INFO     | 2015-05-08 11:55:09,458 | progress   | This will result in 121 schemes being created
+INFO     | 2015-05-08 11:55:09,459 | method     | Analysing starting scheme (scheme start_scheme)
+INFO     | 2015-05-08 11:55:09,952 | threadpool | Found 16 cpus
+INFO     | 2015-05-08 11:57:13,370 | progress   | Finished subset 1/73, 1.37 percent done
+INFO     | 2015-05-08 11:57:52,326 | progress   | Finished subset 2/73, 2.74 percent done
+INFO     | 2015-05-08 11:58:14,808 | progress   | Finished subset 3/73, 4.11 percent done
+INFO     | 2015-05-08 11:58:16,374 | progress   | Finished subset 4/73, 5.48 percent done
+INFO     | 2015-05-08 11:58:55,754 | progress   | Finished subset 5/73, 6.85 percent done
+INFO     | 2015-05-08 11:59:34,576 | progress   | Finished subset 6/73, 8.22 percent done
+INFO     | 2015-05-08 12:00:36,666 | progress   | Finished subset 7/73, 9.59 percent done
+INFO     | 2015-05-08 12:01:16,070 | progress   | Finished subset 8/73, 10.96 percent done
+INFO     | 2015-05-08 12:01:16,092 | progress   | Finished subset 9/73, 12.33 percent done
+INFO     | 2015-05-08 12:01:16,092 | method     | ***Greedy algorithm step 1***
+INFO     | 2015-05-08 12:07:09,658 | progress   | Finished subset 10/73, 13.70 percent done
+INFO     | 2015-05-08 12:13:06,741 | progress   | Finished subset 11/73, 15.07 percent done
+INFO     | 2015-05-08 12:21:32,039 | progress   | Finished subset 12/73, 16.44 percent done
+INFO     | 2015-05-08 12:27:41,246 | progress   | Finished subset 13/73, 17.81 percent done
+INFO     | 2015-05-08 12:33:32,222 | progress   | Finished subset 14/73, 19.18 percent done
+INFO     | 2015-05-08 12:39:43,930 | progress   | Finished subset 15/73, 20.55 percent done
+INFO     | 2015-05-08 12:44:48,207 | progress   | Finished subset 16/73, 21.92 percent done
+INFO     | 2015-05-08 12:49:57,337 | progress   | Finished subset 17/73, 23.29 percent done
+INFO     | 2015-05-08 12:53:45,763 | progress   | Finished subset 18/73, 24.66 percent done
+INFO     | 2015-05-08 12:59:33,485 | progress   | Finished subset 19/73, 26.03 percent done
+INFO     | 2015-05-08 13:03:18,600 | progress   | Finished subset 20/73, 27.40 percent done
+INFO     | 2015-05-08 13:06:59,715 | progress   | Finished subset 21/73, 28.77 percent done
+INFO     | 2015-05-08 13:10:16,367 | progress   | Finished subset 22/73, 30.14 percent done
+INFO     | 2015-05-08 13:13:04,021 | progress   | Finished subset 23/73, 31.51 percent done
+INFO     | 2015-05-08 13:15:52,406 | progress   | Finished subset 24/73, 32.88 percent done
+INFO     | 2015-05-08 13:21:53,927 | progress   | Finished subset 25/73, 34.25 percent done
+INFO     | 2015-05-08 13:25:27,680 | progress   | Finished subset 26/73, 35.62 percent done
+INFO     | 2015-05-08 13:28:54,913 | progress   | Finished subset 27/73, 36.99 percent done
+INFO     | 2015-05-08 13:31:58,131 | progress   | Finished subset 28/73, 38.36 percent done
+INFO     | 2015-05-08 13:34:35,984 | progress   | Finished subset 29/73, 39.73 percent done
+INFO     | 2015-05-08 13:37:17,543 | progress   | Finished subset 30/73, 41.10 percent done
+INFO     | 2015-05-08 13:43:58,222 | progress   | Finished subset 31/73, 42.47 percent done
+INFO     | 2015-05-08 13:49:46,016 | progress   | Finished subset 32/73, 43.84 percent done
+INFO     | 2015-05-08 13:56:42,552 | progress   | Finished subset 33/73, 45.21 percent done
+INFO     | 2015-05-08 14:02:09,907 | progress   | Finished subset 34/73, 46.58 percent done
+INFO     | 2015-05-08 14:07:49,275 | progress   | Finished subset 35/73, 47.95 percent done
+INFO     | 2015-05-08 14:11:35,076 | progress   | Finished subset 36/73, 49.32 percent done
+INFO     | 2015-05-08 14:15:29,164 | progress   | Finished subset 37/73, 50.68 percent done
+INFO     | 2015-05-08 14:18:36,827 | progress   | Finished subset 38/73, 52.05 percent done
+INFO     | 2015-05-08 14:21:39,409 | progress   | Finished subset 39/73, 53.42 percent done
+INFO     | 2015-05-08 14:24:43,669 | progress   | Finished subset 40/73, 54.79 percent done
+INFO     | 2015-05-08 14:27:19,269 | progress   | Finished subset 41/73, 56.16 percent done
+INFO     | 2015-05-08 14:29:50,636 | progress   | Finished subset 42/73, 57.53 percent done
+INFO     | 2015-05-08 14:32:27,751 | progress   | Finished subset 43/73, 58.90 percent done
+INFO     | 2015-05-08 14:35:06,332 | progress   | Finished subset 44/73, 60.27 percent done
+INFO     | 2015-05-08 14:37:01,103 | progress   | Finished subset 45/73, 61.64 percent done
+INFO     | 2015-05-08 14:37:01,128 | method     | ***Greedy algorithm step 2***
+INFO     | 2015-05-08 14:47:29,889 | progress   | Finished subset 46/73, 63.01 percent done
+INFO     | 2015-05-08 14:55:53,765 | progress   | Finished subset 47/73, 64.38 percent done
+INFO     | 2015-05-08 15:03:57,313 | progress   | Finished subset 48/73, 65.75 percent done
+INFO     | 2015-05-08 15:12:41,711 | progress   | Finished subset 49/73, 67.12 percent done
+INFO     | 2015-05-08 15:20:11,020 | progress   | Finished subset 50/73, 68.49 percent done
+INFO     | 2015-05-08 15:27:46,487 | progress   | Finished subset 51/73, 69.86 percent done
+INFO     | 2015-05-08 15:35:22,863 | progress   | Finished subset 52/73, 71.23 percent done
+INFO     | 2015-05-08 15:35:22,893 | method     | ***Greedy algorithm step 3***
+INFO     | 2015-05-08 15:43:27,789 | progress   | Finished subset 53/73, 72.60 percent done
+INFO     | 2015-05-08 15:49:16,769 | progress   | Finished subset 54/73, 73.97 percent done
+INFO     | 2015-05-08 15:54:45,187 | progress   | Finished subset 55/73, 75.34 percent done
+INFO     | 2015-05-08 16:05:01,515 | progress   | Finished subset 56/73, 76.71 percent done
+INFO     | 2015-05-08 16:09:48,919 | progress   | Finished subset 57/73, 78.08 percent done
+INFO     | 2015-05-08 16:14:39,687 | progress   | Finished subset 58/73, 79.45 percent done
+INFO     | 2015-05-08 16:14:39,713 | method     | ***Greedy algorithm step 4***
+INFO     | 2015-05-08 16:20:49,456 | progress   | Finished subset 59/73, 80.82 percent done
+INFO     | 2015-05-08 16:24:33,322 | progress   | Finished subset 60/73, 82.19 percent done
+INFO     | 2015-05-08 16:28:08,026 | progress   | Finished subset 61/73, 83.56 percent done
+INFO     | 2015-05-08 16:34:02,981 | progress   | Finished subset 62/73, 84.93 percent done
+INFO     | 2015-05-08 16:42:40,538 | progress   | Finished subset 63/73, 86.30 percent done
+INFO     | 2015-05-08 16:42:40,541 | method     | ***Greedy algorithm step 5***
+INFO     | 2015-05-08 16:50:34,481 | progress   | Finished subset 64/73, 87.67 percent done
+INFO     | 2015-05-08 16:58:02,767 | progress   | Finished subset 65/73, 89.04 percent done
+INFO     | 2015-05-08 17:10:35,770 | progress   | Finished subset 66/73, 90.41 percent done
+INFO     | 2015-05-08 17:20:42,353 | progress   | Finished subset 67/73, 91.78 percent done
+INFO     | 2015-05-08 17:20:42,357 | method     | ***Greedy algorithm step 6***
+INFO     | 2015-05-08 17:30:42,724 | progress   | Finished subset 68/73, 93.15 percent done
+INFO     | 2015-05-08 17:38:37,788 | progress   | Finished subset 69/73, 94.52 percent done
+INFO     | 2015-05-08 17:48:01,430 | progress   | Finished subset 70/73, 95.89 percent done
+INFO     | 2015-05-08 17:48:01,471 | method     | Greedy algorithm finished after 6 steps
+INFO     | 2015-05-08 17:48:01,471 | method     | Highest scoring scheme is scheme step_5, with bic score of 1840721.948
+INFO     | 2015-05-08 17:48:01,472 | reporter   | Information on best scheme is here: ./analysis/best_scheme.txt
+INFO     | 2015-05-08 17:48:01,474 | main       | Total processing time: 6:10:50 (h:m:s)
+INFO     | 2015-05-08 17:48:01,475 | main       | Processing complete.

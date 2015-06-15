@@ -1,0 +1,30 @@
+Scheme Name       : step_1
+Scheme lnL        : -911859.561634
+Scheme BIC        : 1841838.77129
+Number of params  : 2047
+Number of sites   : 6987
+Number of subsets : 8
+
+Subset | Best Model | Subset Partitions              | Subset Sites                   | Alignment                               
+1      | GTR+G      | gag_pos1                       | 1-1479\3                       | ./analysis/phylofiles/e0d7592adc72511e280cf57c828b402b.phy
+2      | GTR+G      | gag_pos2                       | 2-1479\3                       | ./analysis/phylofiles/f427c9327730a1064aef7a943c4ecf6a.phy
+3      | GTR+I+G    | gag_pos3, pol_pos3             | 3-1479\3, 1482-4479\3          | ./analysis/phylofiles/a21bc6c172e66a69af13860b71ce5a54.phy
+4      | GTR+G      | pol_pos1                       | 1480-4479\3                    | ./analysis/phylofiles/991c39718ad6c08c09486e452b618a2b.phy
+5      | GTR+G      | pol_pos2                       | 1481-4479\3                    | ./analysis/phylofiles/43a6805773d900857b803b07fc045e44.phy
+6      | GTR+G      | env_pos1                       | 4480-6987\3                    | ./analysis/phylofiles/712137da700a51f18226aafc20566396.phy
+7      | GTR+I+G    | env_pos2                       | 4481-6987\3                    | ./analysis/phylofiles/44a86801b97a23d79c671141d5fdf873.phy
+8      | GTR+I+G    | env_pos3                       | 4482-6987\3                    | ./analysis/phylofiles/493e0f8740eb41f3596f7f4b04dcab1b.phy
+
+
+Scheme Description in PartitionFinder format
+Scheme_step_1 = (gag_pos1) (gag_pos2) (gag_pos3, pol_pos3) (pol_pos1) (pol_pos2) (env_pos1) (env_pos2) (env_pos3);
+
+RaxML-style partition definitions
+DNA, p1 = 1-1479\3
+DNA, p2 = 2-1479\3
+DNA, p3 = 3-1479\3, 1482-4479\3
+DNA, p4 = 1480-4479\3
+DNA, p5 = 1481-4479\3
+DNA, p6 = 4480-6987\3
+DNA, p7 = 4481-6987\3
+DNA, p8 = 4482-6987\3

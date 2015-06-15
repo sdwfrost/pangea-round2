@@ -1,0 +1,74 @@
+---
+title: "Find root"
+author: "Simon D.W. Frost"
+date: "30 April 2015"
+output: html_document
+---
+
+```{r}
+library(ape)
+library(magrittr)
+library(phangorn)
+library(rPython)
+```
+
+
+
+
+
+```{r}
+stub <- "vill"
+truetree <- read.nexus("Vill_99_Apr15/Vill_99_Apr15.nex")
+truetree.labels <- toupper(truetree$tip.label)
+truetree$tip.label <- truetree.labels
+tt.unroot <- unroot(truetree)
+tn <- tt.unroot$tip.label
+td <- strsplit(tt.unroot$tip.label,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+write.tree(tt.unroot,paste(stub,"_unrooted.tre",sep=""))
+```
+
+```{r}
+lsd.cmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"_unrooted.tre",sep=""),paste(stub,".td",sep=""),paste(10),6987)
+lsd <- system(lsd.cmd,intern=TRUE)
+```
+
+```{r}
+procresult <- function(fn){
+  result <- readLines(fn)
+  line <- result[grep("Tree 1 rate ",result)]
+  line.split <- strsplit(line, " ")[[1]]
+  list(rate=as.double(line.split[4]),tmrca=as.double(line.split[6]))
+}
+procresult("vill_unrooted_result.txt")
+tt.lsd <- read.tree("vill_unrooted_result_newick_date.txt")
+treedist(tt.lsd,truetree)
+```
+
+
+```{r}
+tt.rtt <- rtt(tt.unroot,ttd)
+treedist(tt.rtt,truetree)
+```
+
+RTT seems to do better at finding root.
+
+Save trees to file.
+
+```{r}
+treelist <- c(truetree,tt.rtt,tt.lsd)
+write.tree(treelist,"villagetrees.nwk")
+```
+
+```{r}
+python.load("phyloK2.py")
+python.exec("pk=PhyloKernel()")
+python.exec("fn=open('villagetrees.nwk','r')")
+python.exec("pk.load_trees_from_file(fn)")
+python.get("pk.ntrees")
+python.exec("fn.close()")
+python.exec("pk.compute_matrix()")
+kmat <- do.call(rbind,python.get("pk.kmat.tolist()"))
+dm <- diag(1./sqrt(diag(kmat)))
+kmat.norm <- dm %*% kmat %*% dm
+```

@@ -1,0 +1,11 @@
+input.sequences = Vill1_pathogen2.fas
+input.tree = Vill1_pathogen.tre
+output.stem = Vill1_physher
+substmodel.type = GTR
+substmodel.heterogeneity = gammainv
+substmodel.heterogeneity.gamma.cat = 4
+substmodel.heterogeneity.gamma.alpha = 1
+substmodel.heterogeneity.pinv = 0.3
+clock = strict
+clock.rate = 0.003
+

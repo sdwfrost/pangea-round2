@@ -1,0 +1,12 @@
+```{r}
+library(ape)
+library(adephylo)
+```
+
+
+```{r}
+tr <- read.tree("lsd/Vill1_lsd.tre")
+ct <- branching.times(tr)
+st <- distRppt
+```
+

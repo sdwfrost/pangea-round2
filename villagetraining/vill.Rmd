@@ -1,5 +1,6 @@
 ```{r}
 library(ape)
+library(phangorn)
 library(magrittr)
 ```
 
@@ -7,9 +8,19 @@ library(magrittr)
 s <- read.dna("Vill_99_Apr15/Vill_99_Apr15.fasta",format="fasta",as.matrix=TRUE)
 tr <- read.nexus("Vill_99_Apr15/Vill_99_Apr15.nex")
 tr$tip.label <- toupper(tr$tip.label)
+# sample 100 sequences
+set.seed(1)
+idx <- sample(1:length(row.names(s)),100)
+snames <- row.names(s)[idx]
+ssubset <- s[idx,]
+trsubset <- tr
+trsubset <- drop.tip(trsubset,trsubset$tip.label[!(trsubset$tip.label %in% snames)])
+write.tree(trsubset,"village_subset_true.tre")
+write.dna(ssubset,"village_subset.fas",format="fasta",nbcol=-1,colsep="")
 tr2 <- tr
 tl1 <- tr$tip.label  %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
 tl2 <- tr$tip.label  %>% strsplit(.,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+td <- tr$tip.label  %>% strsplit(.,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
 tl <- paste(tl1,tl2,sep="_")
 tr2$tip.label <- tl
 s2 <- s
@@ -23,6 +34,7 @@ row.names(s2) <- paste(id1,id2,sep="_")
 vill.tn93 <- dist.dna(s,model="TN93")
 vill.nj <- nj(vill.tn93)
 vill.nj.ph85 <- dist.topo(vill.nj,tr)
+treedist(vill.nj,tr)
 ```
 
 ```{r}
@@ -31,12 +43,43 @@ vill.ft <- system(cmd,intern=TRUE)
 vill.ft.tr <- read.tree(text=vill.ft)
 vill.ft.ph85 <- dist.topo(vill.ft.tr,tr)
 treedist(vill.ft.tr,tr)
+treedist(multi2di(vill.ft.tr),tr)
 ```
 
 ```{r}
 vill.ex <- read.tree("ExaML_result.vill")
 vill.ex.ph85 <- dist.topo(vill.ex,tr2)
+treedist(vill.ex,tr2)
 ```
+
+```{r}
+vill.ex2 <- read.tree("examl/ExaML_result.vill_strict")
+vill.ex2.ph85 <- dist.topo(vill.ex,tr2)
+treedist(vill.ex2,tr2)
+```
+
+```{r}
+vill.rax <- read.tree("raxml/RAxML_bestTree.vill")
+vill.rax.ph85 <- dist.topo(vill.ex,tr2)
+treedist(vill.rax,tr2)
+```
+
+iqtree
+
+```{r}
+vill.iq <- read.tree("vill_partition_131.treefile")
+vill.iq.ph85 <- dist.topo(vill.iq,tr2)
+treedist(vill.iq,tr2)
+```
+
+iqtree r4 model
+
+```{r}
+vill.iq2 <- read.tree("vill_partition_gtrr4.treefile")
+vill.iq2.ph85 <- dist.topo(vill.iq2,tr2)
+treedist(vill.iq2,tr2)
+```
+
 
 Compare length of trees.
 
@@ -57,3 +100,38 @@ cmd <- "raxmlHPC-PTHREADS-SSE3 -s vill.phy -f B -m GTRGAMMAI -n vill_scaled -T 4
 cmd <- "raxmlHPC-PTHREADS-SSE3 -s vill.phy -f e -m GTRGAMMAI -n vill_correct -T 4 -p 1 -q villages_partition -t vill_scaled.tre"
                                         #system(cmd)
 ```
+
+Try pml from phangorn, just to get parameter values using the ExaML tree.
+
+```{r}
+pml.gag <- pml(unroot(vill.ex),as.phyDat(s2[,1:1479]),model="GTR",inv=0.3,k=4,shape=1.0)
+pml.pol <- pml(unroot(vill.ex),as.phyDat(s2[,1480:4479]),model="GTR",inv=0.3,k=4,shape=1.0)
+pml.env <- pml(unroot(vill.ex),as.phyDat(s2[,4480:6987]),model="GTR",inv=0.3,k=4,shape=1.0)
+vill.pml <-  pmlPart(bf+Q+inv+shape~edge,list(pml.gag,pml.pol,pml.env))
+```
+
+Now try phyml
+
+Save three separate files.
+
+```{r}
+write.dna(s2[,1:1479],"vill_gag.phy",format="interleaved")
+write.dna(s2[,1480:4479],"vill_pol.phy",format="interleaved")
+write.dna(s2[,4480:6987],"vill_env.phy",format="interleaved")
+```
+
+Take examl tree, rtt it, change the names to get sampling times, and generate a new fasta file for use with tipdate in HyPhy.
+
+```{r}
+tdd <- round(td*365)
+vill.ex.td <- td[match(vill.ex$tip.label,tl)]
+vill.ex.tdd <- tdd[match(vill.ex$tip.label,tl)]
+vill.ex2 <- vill.ex
+vill.ex2$tip.label <- paste(vill.ex$tip.label,vill.ex.tdd,sep="_")
+vill.ex2.rtt <- rtt(vill.ex2,vill.ex.td)
+vill.ex2.seq <- s2
+row.names(vill.ex2.seq) <- paste(row.names(vill.ex2.seq),tdd[match(row.names(vill.ex2.seq),tl)],sep="_")
+write.dna(vill.ex2.seq,"vill_timed.fas",format="fasta",nbcol=-1,colsep="")
+write.tree(vill.ex2.rtt,"vill_ex2_rtt.tre")
+```
+

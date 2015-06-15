@@ -1,0 +1,68 @@
+
+
+This is RAxML version 7.4.9 released by Alexandros Stamatakis on April 29 2013.
+
+With greatly appreciated code contributions by:
+Andre Aberer (HITS)
+Simon Berger (HITS)
+Nick Pattengale (Sandia)
+Wayne Pfeiffer (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+
+Alignment has 4824 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+RAxML Model Optimization up to an accuracy of 1.000000 log likelihood units
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by RAxML
+GAMMA model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA Model parameters will be estimated up to an accuracy of 1.0000000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 4824
+Name: No Name Provided
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+/Users/sdf22/Programs/PartitionFinder/programs/raxml -f e -s ./analysis/start_tree/filtered_source.phy -t ./analysis/start_tree/topology_tree.phy -m GTRGAMMA -n BLTREE -w /Users/sdf22/Projects/pangea-round2/partition/analysis/start_tree -e 1.0 -T 1 -O 
+
+
+
+Model parameters (binary file format) written to: /Users/sdf22/Projects/pangea-round2/partition/analysis/start_tree/RAxML_binaryModelParameters.BLTREE
+
+
+Overall Time for Tree Evaluation 1077.342883
+Final GAMMA  likelihood: -925573.994052
+
+Number of free parameters for AIC-TEST(BR-LEN): 1974
+Number of free parameters for AIC-TEST(NO-BR-LEN): 9
+
+
+Model Parameters of Partition 0, Name: No Name Provided, Type of Data: DNA
+alpha: 0.531256
+Tree-Length: 61.536093
+rate A <-> C: 1.169622
+rate A <-> G: 9.565238
+rate A <-> T: 1.162852
+rate C <-> G: 1.003093
+rate C <-> T: 10.241295
+rate G <-> T: 1.000000
+
+freq pi(A): 0.376507
+freq pi(C): 0.176710
+freq pi(G): 0.229747
+freq pi(T): 0.217036
+
+Final tree written to:                 /Users/sdf22/Projects/pangea-round2/partition/analysis/start_tree/RAxML_result.BLTREE
+Execution Log File written to:         /Users/sdf22/Projects/pangea-round2/partition/analysis/start_tree/RAxML_log.BLTREE

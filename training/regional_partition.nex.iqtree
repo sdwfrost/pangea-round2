@@ -1,0 +1,91 @@
+IQ-TREE 1.2.3 built Apr  8 2015
+
+Partition file name: regional_partition.nex
+Input file name: /tmp/RtmpGQ1eun/file20093c779c9.phy
+Type of analysis: tree reconstruction
+Random seed number: 686167
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Lam-Tung Nguyen, Heiko A. Schmidt, Arndt von Haeseler, and Bui Quang Minh (2015)
+IQ-TREE: A fast and effective stochastic algorithm for estimating
+maximum likelihood phylogenies. Mol. Biol. Evol., 32:268-274.
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 13 taxa with 3 partitions and 6807 total sites (0% missing data)
+
+  ID  Name  Type  #Seqs  #Sites  #Patterns  #Const_Sites
+   1  gag   DNA      13    1440     200      78%
+   2  pol   DNA      13    2844     213      83%
+   3  env   DNA      13    2523     510      66%
+
+SUBSTITUTION PROCESS
+--------------------
+
+Proportional partition model with joint branch lengths and separate models between partitions
+
+  ID  Model          Rate   Parameters
+   1  GTR+I+G4+F     1.0000 GTR{1.88657,6.11117,1.01332,0.703659,6.67538,1}+I{0.297733}+G4{0.768277}+F
+   2  GTR+I+G4+F     1.0000 GTR{2.18655,9.87907,1.00146,0.631567,14.3534,1}+I{0.368951}+G4{0.707924}+F
+   3  GTR+I+G4+F     1.0000 GTR{2.15517,4.46492,0.937044,0.708098,4.61409,1}+I{0.30052}+G4{0.673777}+F
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+NOTE: Tree is UNROOTED although outgroup taxon 'IDPOP_43368_F_DOB_1973.54_2005.88' is drawn at root
+NOTE: Branch lengths are weighted average over all partitions
+      (weighted by the number of sites in the partitions)
+
+Total tree length (sum of branch lengths): 0.4061
+Sum of internal branch lengths: 0.0941
+Sum of internal branch lengths divided by total tree length: 0.2318
+
++---------------------IDPOP_43368_F_DOB_1973.54_2005.88
+|
+|  +-------------------------IDPOP_33322_F_DOB_1966.21_2005.88
++--|
+|  |                    +-----------IDPOP_62138_M_DOB_1984.73_2014.6
+|  +--------------------|
+|                       |     +-----IDPOP_75438_M_DOB_1990.92_2012.27
+|                       |  +--|
+|                       |  |  +------IDPOP_75839_M_DOB_1991.08_2014.71
+|                       +--|
+|                          +--IDPOP_76310_F_DOB_1991.27_2007.5
+|
+|  +------------------IDPOP_38124_F_DOB_1969.92_2006.96
++--|
+   |  +------------------------------------------------IDPOP_67317_F_DOB_1987.27_2015.75
+   +--|
+      |            +------------------------IDPOP_33250_M_DOB_1966.15_2010.5
+      |  +---------|
+      |  |         +------------IDPOP_46067_M_DOB_1975.35_2002.02
+      +--|
+         |                               +-------------IDPOP_45327_F_DOB_1974.83_2006.62
+         |           +-------------------|
+         |           |                   +----------------------IDPOP_51647_F_DOB_1978.92_2013.4
+         +-----------|
+                     +-------------------IDPOP_41511_M_DOB_1972.27_2000.33
+
+Log-likelihood of the tree: -22304.9970 (s.e. 275.2529)
+Number of free parameters: 53
+Akaike information criterion (AIC) score: 44715.9941
+Corrected Akaike information criterion (AICc) score: 44716.8417
+Bayesian information criterion (BIC) score: 45077.7565
+Unconstrained log-likelihood (without tree): -19478.2643
+
+Tree in newick format:
+
+(IDPOP_43368_F_DOB_1973.54_2005.88:0.029167958781272,(IDPOP_33322_F_DOB_1966.21_2005.88:0.034111824887360,(IDPOP_62138_M_DOB_1984.73_2014.6:0.016267323714876,((IDPOP_75438_M_DOB_1990.92_2012.27:0.008537440364881,IDPOP_75839_M_DOB_1991.08_2014.71:0.009369449961891):0.000186,IDPOP_76310_F_DOB_1991.27_2007.5:0.002719803543235):0.005020):0.027350):0.001370,(IDPOP_38124_F_DOB_1969.92_2006.96:0.025142949442017,(IDPOP_67317_F_DOB_1987.27_2015.75:0.062775832186576,((IDPOP_33250_M_DOB_1966.15_2010.5:0.032338912454077,IDPOP_46067_M_DOB_1975.35_2002.02:0.016848112064957):0.013127,((IDPOP_45327_F_DOB_1974.83_2006.62:0.018687695269177,IDPOP_51647_F_DOB_1978.92_2013.4:0.029728346533230):0.026767,IDPOP_41511_M_DOB_1972.27_2000.33:0.026263419935111):0.015626):0.000897):0.000576):0.003188);
+
+TIME STAMP
+----------
+
+Date and time: Sat May  2 07:41:31 2015
+Total CPU time used: 12.7257 seconds (0h:0m:12s)
+Total wall-clock time used: 7.23692 seconds (0h:0m:7s)
+

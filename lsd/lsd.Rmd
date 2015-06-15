@@ -1,0 +1,308 @@
+---
+title: "LSD"
+output: html_document
+---
+
+```{r}
+library(ape)
+library(magrittr)
+library(adephylo)
+library(phytools)
+library(phangorn)
+library(phytools)
+source("RLchronos.R")
+```
+
+```{r}
+seqfiles <- list.files(pattern=".fas$",path="../sequences")
+villseqfiles <- seqfiles[grep("5yr.fas",seqfiles)]
+regseqfiles <- seqfiles[grep("SEQ",seqfiles)]
+```
+
+
+```{r}
+exatrees <- list.files(pattern="ExaML_result",path="../examl")
+villtreefiles <- exatrees[grep("Vill",exatrees)]
+villtreefiles <- villtreefiles[!(grepl("pol",villtreefiles))]
+regtreefiles <- exatrees[grep("sc",exatrees)]
+```
+
+```{r}
+villtrees <- list()
+for(i in 1:length(villtreefiles)){
+  villtrees[[i]] <- read.tree(paste("../examl/",villtreefiles[[i]],sep=""))
+}
+regtrees <- list()
+for(i in 1:length(regtreefiles)){
+  regtrees[[i]] <- read.tree(paste("../examl/",regtreefiles[[i]],sep=""))
+}
+```
+
+```{r}
+villseq <- list()
+for(i in 1:length(villseqfiles)){
+  villseq[[i]] <- read.dna(paste("../sequences/",villseqfiles[[i]],sep=""),format="fasta")
+}
+regseq <- list()
+for(i in 1:length(regseqfiles)){
+  regseq[[i]] <- read.dna(paste("../sequences/",regseqfiles[[i]],sep=""),format="fasta")
+}
+```
+
+```{r}
+villtd <- list()
+for(i in 1:length(villseq)){
+  s <- villseq[[i]]
+  tn <- row.names(s)
+  id1 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+  id2 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+  id <- paste(id1,id2,sep="_")
+  td <- strsplit(tn,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+  villtd[[i]] <- data.frame(tn=tn,newtn=id,td=td)
+}
+regtd <- list()
+for(i in 1:length(villseq)){
+  s <- regseq[[i]]
+  tn <- row.names(s)
+  id <- strsplit(tn,"|",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+  td <- strsplit(tn,"|",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+  regtd[[i]] <- data.frame(tn=tn,newtn=id,td=td)
+}
+```
+
+```{r}
+villstubs <- c("Vill1","Vill2","Vill3","Vill4")
+villlsd <- list()
+for(i in 1:length(villseq)){
+  tddf <- villtd[[i]]
+  tn <- as.character(tddf[,2])
+  td <- tddf[,3]
+  stub <- villstubs[i]
+  tr <- unroot(villtrees[[i]])
+  sq <- villseq[[i]]
+  write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+  write.tree(tr,paste(stub,"_exa.tre",sep=""))
+  lsdcmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"_exa.tre",sep=""),paste(stub,".td",sep=""),paste(10),dim(sq)[2])
+  system(lsdcmd)
+}
+```
+
+```{r}
+regstubs <- c("scA","scB","scC","scD")
+reglsd <- list()
+for(i in 1:length(villseq)){
+  tddf <- regtd[[i]]
+  tn <- as.character(tddf[,2])
+  td <- tddf[,3]
+  stub <- regstubs[i]
+  tr <- unroot(regtrees[[i]])
+  sq <- regseq[[i]]
+  write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,".td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+  write.tree(tr,paste(stub,"_exa.tre",sep=""))
+  lsdcmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"_exa.tre",sep=""),paste(stub,".td",sep=""),paste(10),dim(sq)[2])
+  system(lsdcmd)
+}
+```
+
+Now RTT
+
+```{r}
+villrtt <- list()
+villrttlm <- list()
+for(i in 1:length(villseq)){
+  tddf <- villtd[[i]]
+  tn <- as.character(tddf[,2])
+  td <- tddf[,3]
+  stub <- villstubs[i]
+  tr <- unroot(villtrees[[i]])
+  idx <- match(tr$tip.label,tn)
+  td2 <- td[idx]
+  tr.rtt <- rtt(tr,td2,objective="rsquared")
+  # save files for pathogen
+  tr.rtt2 <- tr.rtt
+  tr.rtt2$tip.label <- paste(tr.rtt2$tip.label,td[match(tr.rtt2$tip.label,tn)],sep="_")
+  write.tree(tr.rtt2,paste(stub,"_rtt2.tre",sep=""))
+  villrtt[[i]] <- tr.rtt
+  tr.rtt.rd <- distRoot(tr.rtt)
+  tr.rtt.td <- td[match(tr.rtt$tip.label,tn)]
+  tr.rtt.lm <- lm(tr.rtt.rd~tr.rtt.td)
+  villrttlm[[i]] <- tr.rtt.lm
+}
+```
+
+Read in pathogen trees and compare.
+
+```{r}
+for(i in 1:length(villrtt)){
+  stub <- villstubs[i]
+  tr.path <- read.nexus(paste(stub,"_pathogen.tre",sep=""))
+  tr.path.rd <- distRoot(tr.path)
+  tr.path.td <- tr.path$tip.label %>% strsplit(.,"_") %>% lapply(.,tail,1) %>% unlist %>% as.double
+  summary(lm(tr.path.rd~tr.path.td))
+}
+```
+
+Pathogen trees have higher R2.
+
+Now chronos
+
+```{r}
+sub.rate.model <- "discrete"
+strict.clock.ctrl <- chronos.control(nb.rate.cat=1)
+villchronos <- list()
+for(i in 1:length(villtrees)){
+  stub <- villstubs[i]
+  tr <- read.nexus(paste(stub,"_pathogen.tre",sep=""))
+  tn <- tr$tip.label
+  td <- strsplit(tn,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+  max.time <- max(td)
+  rd <- distRoot(tr)
+  pathlm <- lm(rd~td)
+  root.time <- unname(-coef(pathlm)[1]/coef(pathlm)[2])
+  calibrating.values <- makeChronosCalib(tr)
+  calibrating.values$age.min <- max.time - root.time
+  calibrating.values$age.max <- max.time - root.time
+  # pins the tips to sampling years
+  calibrating.values <- rbind(calibrating.values,
+                            data.frame(node=seq(1,length(td)),
+                                       age.min=max.time - td,
+                                       age.max=max.time - td,
+                                       soft.bounds=FALSE))
+  dated.tree <-
+  tryCatch(RLchronos(tr, 
+    				lambda=1, 
+  					model=sub.rate.model, 
+  					calibration=calibrating.values,
+            control=strict.clock.ctrl),
+           error = function (e) {
+             ## The error is one of two messages:
+             msg <- e$message
+             cat("Error: ", msg, "\n", sep="")
+             exit.code <- 0
+             if (msg == "cannot find reasonable starting dates after 1000 tries:\nmaybe you need to adjust the calibration dates")
+               {
+                 exit.code <- 2
+               } else if (msg == "some branch lengths are negative") {
+                 exit.code <- 3
+               } else if (msg == "NA/NaN gradient evaluation") {
+                 exit.code <- 4
+               } else if (msg == "Error in svd(PHI) : infinite or missing values in 'x'") {
+                 exit.code <- 5
+               } else {
+                 exit.code <- 6
+               }
+
+             #quit(save="no", status=exit.code)
+           })
+
+}
+```
+
+Output sequences for HyPhy.
+
+```{r}
+for(i in 1:length(villseq)){
+  s <- villseq[[i]]
+  stub <- villstubs[i]
+  tn <- row.names(s)
+  id1 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+  id2 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+  id <- paste(id1,id2,sep="_")
+  row.names(s) <- id
+  write.dna(s,paste(stub,"_hyphy.fas",sep=""),format="fasta",nbcol=-1,colsep="")
+}
+```
+
+Output sequences for physher.
+
+```{r}
+for(i in 1:length(villseq)){
+  s <- villseq[[i]]
+  stub <- villstubs[i]
+  tn <- row.names(s)
+  id1 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",1) %>% unlist
+  id2 <- strsplit(tn,"-",fixed=TRUE) %>% lapply(.,"[",2) %>% unlist
+  id <- paste(id1,id2,sep="_")
+  td <- strsplit(tn,"_",fixed=TRUE) %>% lapply(.,tail,1) %>% unlist %>% as.double
+  row.names(s) <- paste(id,td,sep="_")
+  write.dna(s,paste(stub,"_pathogen.fas",sep=""),format="fasta",nbcol=-1,colsep="")
+}
+```
+
+Now slice the regional trees.
+
+```{r}
+slicetime <- 50 # yrs before present
+regslices <- list()
+for(i in 1:length(regtrees)){
+  #tr <- regtrees[[i]]
+  #tddf <- regtd[[i]]
+  #td <- tddf[match(tr$tip.label,tddf[,2]),3]
+  #rt <- rtt(tr,td)
+  stub <- regstubs[[i]]
+  tr <- read.tree(paste(stub,"_exa_result_newick_date.txt",sep=""))
+  rd <- distRoot(tr)
+  maxrd <- max(rd)
+  st <- maxrd-slicetime
+  tr.slices <- treeSlice(tr,st,trivial=TRUE)
+  regslices[[i]] <- tr.slices
+}
+```
+
+try rtt
+
+```{r}
+slicetime <- 0.16 # yrs before present
+regrtslices <- list()
+for(i in 1:length(regtrees)){
+  tr <- regtrees[[i]]
+  tddf <- regtd[[i]]
+  td <- tddf[match(tr$tip.label,tddf[,2]),3]
+  rt <- rtt(tr,td)
+  rd <- distRoot(rt)
+  maxrd <- max(rd)
+  st <- maxrd-slicetime
+  rt.slices <- treeSlice(rt,st,trivial=TRUE)
+  regrtslices[[i]] <- rt.slices
+}
+```
+
+```{r}
+table(lapply(regslices[[4]],"[[","tip.label") %>% lapply(.,length) %>% unlist)
+```
+
+Write out phylip of giant component for each.
+
+```{r}
+for(i in 1:length(regslices)){
+  stub <- regstubs[i]
+  slices <- regslices[[i]]
+  s <- regseq[[i]]
+  tddf <- regtd[[i]]
+  sl <- (lapply(slices,"[[","tip.label") %>% lapply(.,length) %>% unlist)
+  idx <- seq(1,length(sl))[sl==max(sl)]
+  tn <- slices[[idx]]$tip.label
+  ss <- s[match(as.character(tddf[match(tn,tddf[,2]),1]),row.names(s)),]
+  row.names(ss) <- tn
+  write.dna(ss,paste(stub,"_gc.phy",sep=""),format="interleaved")
+}
+```
+
+Now look at trees.
+
+```{r}
+for(i in 1:length(regslices)){
+  stub <- regstubs[i]
+  tr <- unroot(read.tree(paste("ExaML_result.",stub,"_gc",sep="")))
+  tn <- tr$tip.label
+  tddf <- regtd[[i]]
+  td <- tddf[match(tn,tddf[,2]),3]
+  s <- regseq[[i]]
+  sq <- s[match(tddf[match(tn,tddf[,2]),1],row.names(s)),]
+  write.table(rbind(c(length(tn),""),cbind(tn,td)),paste(stub,"_gc.td",sep=""),col.names=FALSE,row.names=FALSE,quote=FALSE)
+  write.tree(tr,paste(stub,"_gc_exa.tre",sep=""))
+  lsdcmd <- sprintf("lsd -i %s -d %s -c -n 1 -r -b %s -s %s -v",paste(stub,"_gc_exa.tre",sep=""),paste(stub,"_gc.td",sep=""),paste(10),dim(sq)[2])
+  system(lsdcmd)
+}
+```
+

@@ -1,0 +1,4 @@
+
+Error:Constrained optimization failed, since a starting point within the domain specified for the variables couldn't be found.
+Set it by hand, or check your constraints for compatibility.
+Failed constraint:clockTree.HOUSE436_423_7489.mu:=clockTree_scaler_0[3.571521474514157:0-10000]*(0.7488999999999993-clockTree.Node7.T[30.58921520132571:0-0.7488999999999993]) must be in [0,10000]. Current value = -106.575326547806.

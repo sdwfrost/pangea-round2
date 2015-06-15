@@ -1,0 +1,8 @@
+#nexus
+begin sets;
+	charset gag = 1-1479;
+	charset pol = 1480-4479;
+	charset env = 4480-6987;
+	charpartition mine = GTR+I+G:gag, GTR+I+G:pol, GTR+I+G:env;
+end;
+

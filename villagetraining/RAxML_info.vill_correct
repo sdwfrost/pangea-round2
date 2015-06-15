@@ -1,0 +1,122 @@
+
+You are using a proportion of Invariable sites estimate, although I don't
+like it. The likelihood epsilon "-f e" will be automatically lowered to 0.001
+to avoid unfavorable effects caused by simultaneous optimization of alpha and P-Invar
+
+
+This is RAxML version 7.6.3 released by Alexandros Stamatakis on June 25 2013.
+
+With greatly appreciated code contributions by:
+Andre Aberer (HITS)
+Simon Berger (HITS)
+Nick Pattengale (Sandia)
+Wayne Pfeiffer (SDSC)
+Akifumi S. Tanabe (NRIFS)
+
+
+Alignment has 4835 distinct alignment patterns
+
+Found 0 invariant alignment patterns that correspond to 0 columns 
+Proportion of gaps and completely undetermined characters in this alignment: 0.00%
+
+RAxML Model Optimization up to an accuracy of 0.001000 log likelihood units
+
+Using 3 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by RAxML
+GAMMA+P-Invar model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA+P-Invar Model parameters will be estimated up to an accuracy of 0.0010000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 1017
+Name: gag
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 1
+Alignment Patterns: 2017
+Name: pol
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+Partition: 2
+Alignment Patterns: 1801
+Name: env
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+raxmlHPC-PTHREADS-SSE3 -s vill.phy -f e -m GTRGAMMAI -n vill_correct -T 4 -p 1 -q villages_partition -t vill_scaled.tre 
+
+
+
+Model parameters (binary file format) written to: /home/simon/Projects/pangea-round2/villagetraining/RAxML_binaryModelParameters.vill_correct
+
+
+Overall Time for Tree Evaluation 15211.218773
+Final GAMMA  likelihood: -916542.213780
+
+Number of free parameters for AIC-TEST(BR-LEN): 1995
+Number of free parameters for AIC-TEST(NO-BR-LEN): 30
+
+
+Model Parameters of Partition 0, Name: gag, Type of Data: DNA
+alpha: 0.591214
+invar: 0.311433
+Tree-Length: 75.829180
+rate A <-> C: 1.303963
+rate A <-> G: 11.509689
+rate A <-> T: 1.536413
+rate C <-> G: 1.127040
+rate C <-> T: 12.241580
+rate G <-> T: 1.000000
+
+freq pi(A): 0.376003
+freq pi(C): 0.194137
+freq pi(G): 0.235820
+freq pi(T): 0.194041
+
+Model Parameters of Partition 1, Name: pol, Type of Data: DNA
+alpha: 0.623443
+invar: 0.327027
+Tree-Length: 75.829180
+rate A <-> C: 1.399210
+rate A <-> G: 11.352499
+rate A <-> T: 1.379185
+rate C <-> G: 1.292652
+rate C <-> T: 12.435030
+rate G <-> T: 1.000000
+
+freq pi(A): 0.391254
+freq pi(C): 0.170151
+freq pi(G): 0.226801
+freq pi(T): 0.211794
+
+Model Parameters of Partition 2, Name: env, Type of Data: DNA
+alpha: 0.972940
+invar: 0.283008
+Tree-Length: 75.829180
+rate A <-> C: 1.099672
+rate A <-> G: 8.986974
+rate A <-> T: 1.031246
+rate C <-> G: 0.947540
+rate C <-> T: 9.090739
+rate G <-> T: 1.000000
+
+freq pi(A): 0.359164
+freq pi(C): 0.174280
+freq pi(G): 0.229689
+freq pi(T): 0.236866
+
+Final tree written to:                 /home/simon/Projects/pangea-round2/villagetraining/RAxML_result.vill_correct
+Execution Log File written to:         /home/simon/Projects/pangea-round2/villagetraining/RAxML_log.vill_correct
